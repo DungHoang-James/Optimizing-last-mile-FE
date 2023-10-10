@@ -9,7 +9,8 @@ import {
   Popover,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import { MouseEvent, useState } from "react";
+import type { MouseEvent } from "react";
+import { useState } from "react";
 // @mui
 
 // mocks_

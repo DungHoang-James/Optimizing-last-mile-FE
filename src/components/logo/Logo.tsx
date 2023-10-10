@@ -1,5 +1,7 @@
-import { Box, BoxProps, Link } from "@mui/material";
-import { SxProps, useTheme } from "@mui/material/styles";
+import type { BoxProps } from "@mui/material";
+import { Box, Link } from "@mui/material";
+import type { SxProps } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { forwardRef } from "react";
 import { Link as RouterLink } from "react-router-dom";
 

@@ -17,7 +17,8 @@ import {
 } from "@mui/material";
 import { noCase } from "change-case";
 import dayjs from "dayjs";
-import { MouseEvent, useState } from "react";
+import type { MouseEvent } from "react";
+import { useState } from "react";
 
 // utils
 // components

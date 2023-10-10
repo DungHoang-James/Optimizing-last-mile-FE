@@ -4,8 +4,9 @@ import {
   StyledEngineProvider,
   createTheme,
 } from "@mui/material/styles";
-import { Theme } from "@mui/material/styles/createTheme";
-import { PropsWithChildren, useMemo } from "react";
+import type { Theme } from "@mui/material/styles/createTheme";
+import type { PropsWithChildren } from "react";
+import { useMemo } from "react";
 
 import customShadows from "./customShadows";
 import GlobalStyles from "./globalStyles";

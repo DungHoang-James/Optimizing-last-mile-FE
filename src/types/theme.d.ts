@@ -1,6 +1,9 @@
-import { ShapeOptions as MuiShapeOptions, ThemeOptions } from "@mui/material";
+import type {
+  ShapeOptions as MuiShapeOptions,
+  ThemeOptions,
+} from "@mui/material";
 
-import { TCustomShadows } from "./shadow";
+import type { TCustomShadows } from "./shadow";
 
 declare module "@mui/material" {
   interface Theme extends ThemeOptions {

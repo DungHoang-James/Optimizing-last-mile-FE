@@ -1,8 +1,5 @@
-import {
-  ListItemButton,
-  ListItemButtonProps,
-  ListItemIcon,
-} from "@mui/material";
+import type { ListItemButtonProps } from "@mui/material";
+import { ListItemButton, ListItemIcon } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const StyledNavItem = styled((props: ListItemButtonProps) => (

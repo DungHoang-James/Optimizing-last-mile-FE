@@ -1,5 +1,5 @@
 //
-import { Theme } from "@mui/material";
+import type { Theme } from "@mui/material";
 
 import Accordion from "./Accordion";
 import Autocomplete from "./Autocomplete";

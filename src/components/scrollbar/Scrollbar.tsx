@@ -1,5 +1,7 @@
-import { Box, SxProps } from "@mui/material";
-import { FC, PropsWithChildren, memo } from "react";
+import type { SxProps } from "@mui/material";
+import { Box } from "@mui/material";
+import type { FC, PropsWithChildren } from "react";
+import { memo } from "react";
 
 import { StyledRootScrollbar, StyledScrollbar } from "./styles";
 

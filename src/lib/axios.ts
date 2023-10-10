@@ -1,4 +1,5 @@
-import Axios, { InternalAxiosRequestConfig } from "axios";
+import type { InternalAxiosRequestConfig } from "axios";
+import Axios from "axios";
 
 import { API_URL } from "@/config";
 import { useNotificationStore } from "@/stores/notifications";

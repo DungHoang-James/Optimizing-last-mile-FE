@@ -1,6 +1,9 @@
-import { Box, BoxProps } from "@mui/material";
-import { SxProps, useTheme } from "@mui/material/styles";
-import { PropsWithChildren, forwardRef } from "react";
+import type { BoxProps } from "@mui/material";
+import { Box } from "@mui/material";
+import type { SxProps } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
+import type { PropsWithChildren } from "react";
+import { forwardRef } from "react";
 
 import { StyledLabel } from "./styles";
 

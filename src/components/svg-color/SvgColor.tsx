@@ -1,4 +1,5 @@
-import { Box, BoxProps, SxProps } from "@mui/material";
+import type { BoxProps, SxProps } from "@mui/material";
+import { Box } from "@mui/material";
 import { forwardRef } from "react";
 
 type Props = {

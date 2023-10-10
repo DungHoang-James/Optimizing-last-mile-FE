@@ -1,4 +1,5 @@
-import { Box, List, ListItemText, SxProps } from "@mui/material";
+import type { SxProps } from "@mui/material";
+import { Box, List, ListItemText } from "@mui/material";
 import React from "react";
 import { NavLink as RouterLink } from "react-router-dom";
 

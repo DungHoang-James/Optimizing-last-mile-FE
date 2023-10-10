@@ -1,6 +1,6 @@
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 import { bgBlur } from "@/utils/cssStyles";
 

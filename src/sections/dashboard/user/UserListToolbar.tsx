@@ -7,7 +7,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 
 import Iconify from "@/components/iconify";
 

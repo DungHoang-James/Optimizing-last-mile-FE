@@ -6,7 +6,7 @@ import {
   TableRow,
   TableSortLabel,
 } from "@mui/material";
-import { ChangeEvent, MouseEvent } from "react";
+import type { ChangeEvent, MouseEvent } from "react";
 
 const visuallyHidden = {
   border: 0,

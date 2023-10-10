@@ -1,5 +1,5 @@
 import { alpha } from "@mui/material/styles";
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 // ----------------------------------------------------------------------
 

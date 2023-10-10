@@ -19,7 +19,8 @@ import {
 } from "@mui/material";
 import { sentenceCase } from "change-case";
 import { filter } from "lodash";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import type { ChangeEvent, MouseEvent } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 import USERLIST from "@/__mocks__/user";

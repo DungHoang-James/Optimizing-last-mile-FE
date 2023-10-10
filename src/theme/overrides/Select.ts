@@ -1,5 +1,5 @@
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-import { Theme } from "@mui/material";
+import type { Theme } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
