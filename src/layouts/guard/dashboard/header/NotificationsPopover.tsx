@@ -20,12 +20,9 @@ import dayjs from "dayjs";
 import type { MouseEvent } from "react";
 import { useState } from "react";
 
-// utils
-// components
+import Iconify from "@/components/iconify";
+import Scrollbar from "@/components/scrollbar";
 import { fToNow } from "@/utils/formatTime";
-
-import Iconify from "../../../components/iconify";
-import Scrollbar from "../../../components/scrollbar";
 
 // ----------------------------------------------------------------------
 

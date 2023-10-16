@@ -9,7 +9,7 @@ import NavSection from "@/components/nav-section";
 import Scrollbar from "@/components/scrollbar";
 import useResponsive from "@/hooks/useResponsive";
 
-import navConfig from "./config";
+import { navConfig } from "./config";
 
 const NAV_WIDTH = 280;
 
@@ -52,17 +52,14 @@ export default function Nav({ openNav, onCloseNav }: Props) {
       <Box sx={{ px: 2.5, py: 3, display: "inline-flex" }}>
         <Logo />
       </Box>
-
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar src={account.photoURL} alt="photoURL" />
-
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
                 {account.displayName}
               </Typography>
-
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 {account.role}
               </Typography>
@@ -70,10 +67,7 @@ export default function Nav({ openNav, onCloseNav }: Props) {
           </StyledAccount>
         </Link>
       </Box>
-
       <NavSection data={navConfig} />
-
-      <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
   );
 

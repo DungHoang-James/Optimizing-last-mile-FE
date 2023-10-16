@@ -22,6 +22,7 @@ import { filter } from "lodash";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 
 import USERLIST from "@/__mocks__/user";
 import Iconify from "@/components/iconify";
@@ -87,6 +88,8 @@ export default function UserPage() {
   const [filterName, setFilterName] = useState("");
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const navigate = useNavigate();
 
   const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setOpen(event.currentTarget);
@@ -164,6 +167,10 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
+  const handleNewManager = () => {
+    navigate("/dashboard/manager/new");
+  };
+
   return (
     <>
       <Helmet>
@@ -182,8 +189,9 @@ export default function UserPage() {
           <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
+            onClick={handleNewManager}
           >
-            New User
+            New Manager
           </Button>
         </Stack>
         <Card>

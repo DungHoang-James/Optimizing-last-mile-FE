@@ -1,7 +1,7 @@
-import { Container, Typography } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
-export default function DashboardAppPage() {
+export default function UserDetailPage() {
   return (
     <>
       <Helmet>
@@ -10,7 +10,7 @@ export default function DashboardAppPage() {
 
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back
+          UserDetailPage
         </Typography>
       </Container>
     </>
