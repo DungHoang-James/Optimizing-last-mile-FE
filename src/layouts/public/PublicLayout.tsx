@@ -1,7 +1,5 @@
-import { LinearProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 
 import Logo from "@/components/logo";
 import { useAuth } from "@/hooks";
@@ -19,15 +17,11 @@ const StyledHeader = styled("header")(({ theme }) => ({
 }));
 
 export default function PublicLayout(): JSX.Element {
-  const navigate = useNavigate();
   const { state } = useAuth();
 
-  useEffect(() => {
-    if (!state.isAuthenticated) return navigate("/login", { replace: true });
-    return navigate("/dashboard/manager", { replace: true });
-  }, [state.isAuthenticated]);
-
-  if (state.loading || state.isAuthenticated) return <LinearProgress />;
+  if (state.isAuthenticated) {
+    redirect("/dashboard/manager");
+  }
   return (
     <>
       <StyledHeader>
