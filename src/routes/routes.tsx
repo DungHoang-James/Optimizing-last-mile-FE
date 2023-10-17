@@ -1,36 +1,56 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import DashboardLayout from "@/layouts/guard/dashboard";
-import PublicLayout from "@/layouts/public/PublicLayout";
-import LoginPage from "@/pages/LoginPage";
-import Page404 from "@/pages/Page404";
-import UserDetailPage from "@/pages/UserDetailPage";
-
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <PublicLayout />,
+    async lazy() {
+      const { default: PublicLayout } = await import("../layouts/public");
+      return { Component: PublicLayout };
+    },
     children: [
       {
-        path: "/dashboard",
-        element: <DashboardLayout />,
-        children: [
-          {
-            path: "manager",
-            async lazy() {
-              const { default: UserPage } = await import("../pages/UserPage");
-              return { Component: UserPage };
-            },
-          },
-          {
-            path: "manager/new",
-            element: <UserDetailPage />,
-          },
-        ],
+        path: "login",
+        async lazy() {
+          const { default: LoginPage } = await import("../pages/LoginPage");
+          return { Component: LoginPage };
+        },
       },
     ],
   },
-  { path: "login", element: <LoginPage />, index: true },
-  { path: "404", element: <Page404 /> },
+  {
+    path: "/dashboard",
+    async lazy() {
+      const { default: DashboardLayout } = await import(
+        "../layouts/guard/dashboard"
+      );
+      return { Component: DashboardLayout };
+    },
+    children: [
+      {
+        path: "manager",
+        index: true,
+        async lazy() {
+          const { default: UserPage } = await import("../pages/UserPage");
+          return { Component: UserPage };
+        },
+      },
+      {
+        path: "manager/new",
+        async lazy() {
+          const { default: UserDetailPage } = await import(
+            "../pages/UserDetailPage"
+          );
+          return { Component: UserDetailPage };
+        },
+      },
+    ],
+  },
+  {
+    path: "404",
+    async lazy() {
+      const { default: Page404 } = await import("../pages/Page404");
+      return { Component: Page404 };
+    },
+  },
   { path: "*", element: <Navigate to="/404" /> },
 ]);

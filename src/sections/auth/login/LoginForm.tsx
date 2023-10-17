@@ -46,7 +46,7 @@ export default function LoginForm(): JSX.Element {
     new Promise(() =>
       setTimeout(() => {
         dispatch({
-          type: Types.LOGGEDIN,
+          type: Types.LOGIN,
         });
         navigate("/dashboard", { replace: true });
       }, 3000)

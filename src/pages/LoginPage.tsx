@@ -52,7 +52,6 @@ export default function LoginPage() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-
       <StyledRoot>
         <Logo
           sx={{
@@ -61,7 +60,6 @@ export default function LoginPage() {
             left: { xs: 16, sm: 24, md: 40 },
           }}
         />
-
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
@@ -73,18 +71,15 @@ export default function LoginPage() {
             />
           </StyledSection>
         )}
-
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
               Sign in to Minimal
             </Typography>
-
             <Typography variant="body2" sx={{ mb: 5 }}>
               Don’t have an account? {""}
               <Link variant="subtitle2">Get started</Link>
             </Typography>
-
             <Stack direction="row" spacing={2}>
               <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify
@@ -103,7 +98,6 @@ export default function LoginPage() {
                   height={22}
                 />
               </Button>
-
               <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify
                   icon="eva:twitter-fill"
@@ -113,13 +107,11 @@ export default function LoginPage() {
                 />
               </Button>
             </Stack>
-
             <Divider sx={{ my: 3 }}>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 OR
               </Typography>
             </Divider>
-
             <LoginForm />
           </StyledContent>
         </Container>
