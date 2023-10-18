@@ -48,7 +48,7 @@ export default function LoginForm(): JSX.Element {
         dispatch({
           type: Types.LOGIN,
         });
-        navigate("/dashboard", { replace: true });
+        navigate("/dashboard/managers", { replace: true });
       }, 3000)
     );
   };

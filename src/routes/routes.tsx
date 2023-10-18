@@ -1,5 +1,14 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
+export const ROUTES_PATH: { [key: string]: string } = {
+  "/": "root",
+  "/login": "login",
+  "/dashboard": "dashboard",
+  "/dashboard/managers": "managers",
+  "/dashboard/profile": "profile",
+  "/404": "not_found",
+};
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -9,7 +18,7 @@ export const router = createBrowserRouter([
     },
     children: [
       {
-        path: "login",
+        path: "/login",
         async lazy() {
           const { default: LoginPage } = await import("../pages/LoginPage");
           return { Component: LoginPage };
@@ -27,30 +36,30 @@ export const router = createBrowserRouter([
     },
     children: [
       {
-        path: "manager",
+        path: "/dashboard/managers",
         index: true,
         async lazy() {
-          const { default: UserPage } = await import("../pages/UserPage");
-          return { Component: UserPage };
+          const { default: ManagersPage } = await import(
+            "../pages/ManagersPage"
+          );
+          return { Component: ManagersPage };
         },
       },
       {
         path: "manager/new",
         async lazy() {
-          const { default: UserDetailPage } = await import(
-            "../pages/UserDetailPage"
-          );
-          return { Component: UserDetailPage };
+          const { default: ManagerPage } = await import("../pages/ManagerPage");
+          return { Component: ManagerPage };
         },
       },
     ],
   },
   {
-    path: "404",
+    path: "/404",
     async lazy() {
       const { default: Page404 } = await import("../pages/Page404");
       return { Component: Page404 };
     },
   },
-  { path: "*", element: <Navigate to="/404" /> },
+  { path: "*", element: <Navigate to={"/404"} /> },
 ]);

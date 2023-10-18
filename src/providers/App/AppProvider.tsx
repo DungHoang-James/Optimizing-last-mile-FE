@@ -1,3 +1,5 @@
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import type { PropsWithChildren } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClientProvider } from "react-query";
@@ -14,7 +16,9 @@ export default function AppProvider({
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <AuthProvider>{children}</AuthProvider>
+          </LocalizationProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </HelmetProvider>

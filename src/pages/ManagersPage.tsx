@@ -27,7 +27,10 @@ import { useNavigate } from "react-router-dom";
 import USERLIST from "@/__mocks__/user";
 import Iconify from "@/components/iconify";
 import Label from "@/components/label";
-import { UserListHead, UserListToolbar } from "@/sections/dashboard/user";
+import {
+  ManagerListHead,
+  ManagerListToolbar,
+} from "@/sections/dashboard/managers";
 
 const TABLE_HEAD = [
   { id: "name", label: "Name", alignRight: false },
@@ -74,7 +77,7 @@ function applySortFilter(
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function UserPage() {
+export default function UserPage(): JSX.Element {
   const [open, setOpen] = useState<HTMLButtonElement | null>(null);
 
   const [page, setPage] = useState(0);
@@ -195,14 +198,14 @@ export default function UserPage() {
           </Button>
         </Stack>
         <Card>
-          <UserListToolbar
+          <ManagerListToolbar
             numSelected={selected.length}
             filterName={filterName}
             onFilterName={handleFilterByName}
           />
           <TableContainer sx={{ minWidth: 800 }}>
             <Table>
-              <UserListHead
+              <ManagerListHead
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}

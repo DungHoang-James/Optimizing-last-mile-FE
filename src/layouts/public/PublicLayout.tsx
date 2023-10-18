@@ -10,9 +10,9 @@ export default function PublicLayout() {
 
   useEffect(() => {
     if (state.isAuthenticated) {
-      return navigate("dashboard/manager", { replace: true });
+      return navigate("/dashboard/managers", { replace: true });
     }
-    return navigate("login", { replace: true });
+    return navigate("/login", { replace: true });
   }, [state.isAuthenticated]);
 
   if (state.loading || state.isAuthenticated) return <LinearProgress />;

@@ -10,8 +10,8 @@ const icon = (name: string) => (
 
 const navConfig: NavConfig[] = [
   {
-    title: "Manager",
-    path: "/dashboard/manager",
+    title: "Managers",
+    path: "/dashboard/managers",
     icon: icon("ic_user"),
   },
   {

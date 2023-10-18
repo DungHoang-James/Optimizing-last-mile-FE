@@ -40,6 +40,7 @@ export default function DashboardLayout(): JSX.Element {
 
   useEffect(() => {
     if (!state.isAuthenticated) return navigate("/login", { replace: true });
+    return navigate("/dashboard/managers", { replace: true });
   }, [state.isAuthenticated]);
 
   if (state.loading || !state.isAuthenticated) return <LinearProgress />;
