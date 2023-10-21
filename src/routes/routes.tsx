@@ -45,13 +45,6 @@ export const router = createBrowserRouter([
           return { Component: ManagersPage };
         },
       },
-      {
-        path: "manager/new",
-        async lazy() {
-          const { default: ManagerPage } = await import("../pages/ManagerPage");
-          return { Component: ManagerPage };
-        },
-      },
     ],
   },
   {

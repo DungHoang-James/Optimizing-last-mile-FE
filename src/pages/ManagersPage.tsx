@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   Card,
   Checkbox,
   Container,
@@ -22,7 +21,6 @@ import { filter } from "lodash";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
 
 import USERLIST from "@/__mocks__/user";
 import Iconify from "@/components/iconify";
@@ -31,6 +29,7 @@ import {
   ManagerListHead,
   ManagerListToolbar,
 } from "@/sections/dashboard/managers";
+import ManagerCreate from "@/sections/dashboard/managers/ManagerDialog";
 
 const TABLE_HEAD = [
   { id: "name", label: "Name", alignRight: false },
@@ -91,8 +90,6 @@ export default function UserPage(): JSX.Element {
   const [filterName, setFilterName] = useState("");
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const navigate = useNavigate();
 
   const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setOpen(event.currentTarget);
@@ -170,10 +167,6 @@ export default function UserPage(): JSX.Element {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
-  const handleNewManager = () => {
-    navigate("/dashboard/manager/new");
-  };
-
   return (
     <>
       <Helmet>
@@ -189,13 +182,7 @@ export default function UserPage(): JSX.Element {
           <Typography variant="h4" gutterBottom>
             Manager Account
           </Typography>
-          <Button
-            variant="contained"
-            startIcon={<Iconify icon="eva:plus-fill" />}
-            onClick={handleNewManager}
-          >
-            New Manager
-          </Button>
+          <ManagerCreate />
         </Stack>
         <Card>
           <ManagerListToolbar
