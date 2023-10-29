@@ -1,15 +1,19 @@
-import { Avatar, Box, Drawer, Link, Typography } from "@mui/material";
+import { Box, Drawer, Link, List, Typography } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
 
 import account from "@/__mocks__/account";
-import Logo from "@/components/logo";
-import NavSection from "@/components/nav-section";
-import Scrollbar from "@/components/scrollbar";
+import { Avatar } from "@/components/avatar";
+import NavSection, { NavItem } from "@/components/nav-section";
+import { useAuth } from "@/hooks";
 import useResponsive from "@/hooks/useResponsive";
+import { fetchWithGet } from "@/lib/request";
+import { Types } from "@/providers/Auth/AuthContext";
+import type { AccountResponse } from "@/types";
 
-import { navConfig } from "./config";
+import { logoutNav, managerNavConfig, navConfig } from "./config";
 
 const NAV_WIDTH = 280;
 
@@ -28,47 +32,61 @@ type Props = {
 
 export default function Nav({ openNav, onCloseNav }: Props) {
   const { pathname } = useLocation();
+  const { state, dispatch } = useAuth();
+
+  const { data } = useQuery({
+    queryKey: [`/account-profile/${state.id}`],
+    queryFn: ({ queryKey, signal }) =>
+      fetchWithGet<AccountResponse>({ queryKey, signal }),
+    select: (data) => {
+      return {
+        displayName: data?.data.result?.username,
+        role: state.role,
+      };
+    },
+  });
 
   const isDesktop = useResponsive("up", "lg");
+
+  const handleLogout = () => {
+    return dispatch({
+      type: Types.LOGOUT,
+    });
+  };
 
   useEffect(() => {
     if (openNav) {
       onCloseNav();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const renderContent = (
-    <Scrollbar
-      sx={{
-        height: 1,
-        "& .simplebar-content": {
-          height: 1,
-          display: "flex",
-          flexDirection: "column",
-        },
-      }}
-    >
-      <Box sx={{ px: 2.5, py: 3, display: "inline-flex" }}>
-        <Logo />
-      </Box>
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+    <>
+      <Box sx={{ mb: 5, mx: 2.5, pt: 3 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                {account.displayName}
+                {data?.displayName}
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                {account.role}
+                {data?.role}
               </Typography>
             </Box>
           </StyledAccount>
         </Link>
       </Box>
-      <NavSection data={navConfig} />
-    </Scrollbar>
+      <NavSection
+        sx={{ flexGrow: 1 }}
+        data={state.role === "ADMIN" ? navConfig : managerNavConfig}
+      />
+      <Box onClick={handleLogout}>
+        <List disablePadding sx={{ p: 1 }}>
+          <NavItem item={logoutNav} />
+        </List>
+      </Box>
+    </>
   );
 
   return (

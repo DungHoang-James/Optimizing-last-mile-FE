@@ -5,16 +5,16 @@ dayjs.extend(relativeTime);
 
 // ----------------------------------------------------------------------
 
-export function fDate(date: string, newFormat: string) {
-  const fm = newFormat || "dd MMM yyyy";
+export function fDate(date: string, newFormat?: string) {
+  const fm = newFormat || "DD/MM/YYYY";
 
-  return date ? dayjs(new Date(date), { format: fm }) : "";
+  return date ? dayjs(new Date(date)).format(fm) : "";
 }
 
-export function fDateTime(date: string, newFormat: string) {
+export function fDateTime(date: string, newFormat?: string) {
   const fm = newFormat || "dd MMM yyyy p";
 
-  return date ? dayjs(new Date(date), { format: fm }) : "";
+  return date ? dayjs(new Date(date)).format(fm) : "";
 }
 
 export function fTimestamp(date: string) {

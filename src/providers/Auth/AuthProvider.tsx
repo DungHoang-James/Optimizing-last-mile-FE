@@ -29,6 +29,7 @@ function AuthProvider({ children }: PropsWithChildren): JSX.Element {
       payload: {
         loading: false,
         isAuthenticated: true,
+        jwtToken: token,
       },
     });
   }, []);

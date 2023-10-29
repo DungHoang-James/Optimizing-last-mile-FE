@@ -10,7 +10,7 @@ export default function PublicLayout() {
 
   useEffect(() => {
     if (state.isAuthenticated) {
-      return navigate("/dashboard/managers", { replace: true });
+      return navigate("/dashboard", { replace: true });
     }
     return navigate("/login", { replace: true });
   }, [state.isAuthenticated]);

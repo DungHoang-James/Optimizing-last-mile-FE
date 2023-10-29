@@ -1,4 +1,4 @@
-import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
+import { AppBar, Box, IconButton, Stack, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import type { CSSProperties } from "react";
 
@@ -6,7 +6,6 @@ import { bgBlur } from "@/utils/cssStyles";
 
 import Iconify from "../../../../components/iconify";
 
-import AccountPopover from "./AccountPopover";
 import NotificationsPopover from "./NotificationsPopover";
 import Searchbar from "./Searchbar";
 
@@ -63,7 +62,6 @@ export default function Header({ onOpenNav }: Props) {
           }}
         >
           <NotificationsPopover />
-          <AccountPopover />
         </Stack>
       </StyledToolbar>
     </StyledRoot>

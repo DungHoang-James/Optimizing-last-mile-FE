@@ -1,15 +1,7 @@
-import {
-  Link,
-  Container,
-  Typography,
-  Divider,
-  Stack,
-  Button,
-} from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Helmet } from "react-helmet-async";
 
-import Iconify from "../components/iconify";
 import Logo from "../components/logo";
 import useResponsive from "../hooks/useResponsive";
 import { LoginForm } from "../sections/auth/login";
@@ -50,7 +42,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title>Login</title>
+        <title>Login - Optimizing Last Mile</title>
       </Helmet>
       <StyledRoot>
         <Logo
@@ -74,44 +66,8 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Sign in
             </Typography>
-            <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {""}
-              <Link variant="subtitle2">Get started</Link>
-            </Typography>
-            <Stack direction="row" spacing={2}>
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify
-                  icon="eva:google-fill"
-                  color="#DF3E30"
-                  width={22}
-                  height={22}
-                />
-              </Button>
-
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify
-                  icon="eva:facebook-fill"
-                  color="#1877F2"
-                  width={22}
-                  height={22}
-                />
-              </Button>
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify
-                  icon="eva:twitter-fill"
-                  color="#1C9CEA"
-                  width={22}
-                  height={22}
-                />
-              </Button>
-            </Stack>
-            <Divider sx={{ my: 3 }}>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                OR
-              </Typography>
-            </Divider>
             <LoginForm />
           </StyledContent>
         </Container>

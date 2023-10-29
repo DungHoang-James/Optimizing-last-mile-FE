@@ -1,76 +1,102 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
 import {
-  Checkbox,
-  FormControlLabel,
+  FormHelperText,
   IconButton,
   InputAdornment,
-  Link,
   Stack,
   TextField,
 } from "@mui/material";
+import type { AxiosError } from "axios";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import * as yup from "yup";
 
 import Form from "@/components/form";
 import Iconify from "@/components/iconify";
 import { useAuth } from "@/hooks";
 import { Types } from "@/providers/Auth/AuthContext";
+import { loginService } from "@/services/auth";
 
 type FormValues = {
-  email: string;
+  username: string;
   password: string;
-  remember: boolean;
 };
 
+const loginSchema = yup.object({
+  username: yup.string().required("Username is required"),
+  password: yup.string().required("Password is required"),
+});
+
 export default function LoginForm(): JSX.Element {
-  const navigate = useNavigate();
+  const { mutate, isLoading } = useMutation(loginService);
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
-      remember: false,
     },
+    resolver: yupResolver(loginSchema),
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const { state, dispatch } = useAuth();
+  const { dispatch } = useAuth();
 
-  const onSubmit = (data: FormValues) => {
-    setLoading(true);
-    dispatch({
-      type: Types.LOGIN,
-    });
-
-    new Promise(() =>
-      setTimeout(() => {
-        dispatch({
-          type: Types.LOGIN,
-        });
-        navigate("/dashboard/managers", { replace: true });
-      }, 3000)
+  const onSubmit = ({ username, password }: FormValues) => {
+    mutate(
+      {
+        username,
+        password,
+      },
+      {
+        onSuccess: (data) => {
+          if (!data) return;
+          return dispatch({
+            type: Types.LOGIN,
+            payload: {
+              jwtToken: data?.data.result?.jwtToken,
+            },
+          });
+        },
+        onError: (data) => {
+          const results = data as AxiosError<any, any>;
+          setError(results.response?.data.errorMessage as string);
+        },
+      }
     );
   };
 
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3}>
+        <Stack spacing={2}>
           <Controller
-            name="email"
+            name="username"
             control={control}
-            render={({ field }) => (
-              <TextField label="Email address" {...field} disabled={loading} />
+            render={({ field, fieldState }) => (
+              <TextField
+                {...field}
+                error={Boolean(fieldState.error)}
+                helperText={
+                  Boolean(fieldState.error) && fieldState.error?.message
+                }
+                label="Username"
+                disabled={isLoading}
+              />
             )}
           />
           <Controller
             name="password"
             control={control}
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <TextField
-                disabled={loading}
                 {...field}
+                error={Boolean(fieldState.error)}
+                helperText={
+                  Boolean(fieldState.error) && fieldState.error?.message
+                }
+                disabled={isLoading}
                 label="Password"
                 type={showPassword ? "text" : "password"}
                 InputProps={{
@@ -92,33 +118,17 @@ export default function LoginForm(): JSX.Element {
               />
             )}
           />
-        </Stack>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ my: 2 }}
-        >
-          <Controller
-            name="remember"
-            control={control}
-            render={({ field }) => (
-              <FormControlLabel
-                label="Remember me"
-                control={<Checkbox disabled={loading} {...field} />}
-              />
-            )}
-          />
-          <Link variant="subtitle2" underline="hover">
-            Forgot password?
-          </Link>
+          <FormHelperText error>{error}</FormHelperText>
         </Stack>
         <LoadingButton
+          sx={{
+            mt: 2,
+          }}
           type="submit"
           fullWidth
           size="large"
           variant="contained"
-          loading={loading}
+          loading={isLoading}
         >
           Login
         </LoadingButton>

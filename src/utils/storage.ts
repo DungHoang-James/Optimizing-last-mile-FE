@@ -1,4 +1,4 @@
-const storagePrefix = "deal-cover-";
+const storagePrefix = "optimizing-last-mile-";
 
 const storage = {
   getToken: () => {

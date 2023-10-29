@@ -1,38 +1,51 @@
+import { LoadingButton } from "@mui/lab";
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import Iconify from "@/components/iconify";
+import { Loading } from "@/components/loading";
+import type { Manager } from "@/types";
 
 import { ManagerForm } from ".";
 
-export default function ManagerCreate(): JSX.Element {
-  const [open, setOpen] = useState(false);
+type Props = {
+  id?: number;
+  open: boolean;
+  handleClose: () => void;
+  status: "create" | "edit";
+  loading?: boolean;
+  defaultValues: Manager;
+};
 
-  const handleClickOpen = () => {
-    setOpen(true);
+export default function ManagerDialog({
+  id,
+  open,
+  handleClose,
+  status,
+  loading,
+  defaultValues,
+}: Props): JSX.Element {
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [submit, setSubmit] = useState(false);
+
+  const handleSubmit = () => {
+    formRef.current?.requestSubmit();
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleStateSubmit = () => {
+    setSubmit((prev) => !prev);
   };
+
+  const labelStatus = status === "create" ? "Create" : "Edit";
 
   return (
     <>
-      <Button
-        variant="contained"
-        startIcon={<Iconify icon="eva:plus-fill" />}
-        onClick={handleClickOpen}
-      >
-        New Manager
-      </Button>
       <Dialog open={open} onClose={handleClose} maxWidth={"lg"} fullWidth>
-        <DialogTitle>Create Manager</DialogTitle>
+        <DialogTitle>{labelStatus} Manager</DialogTitle>
         <DialogContent
           sx={{
             ".MuiDialogContent-root&.MuiDialogContent-root": {
@@ -40,15 +53,34 @@ export default function ManagerCreate(): JSX.Element {
             },
           }}
         >
-          <ManagerForm />
+          {loading ? (
+            <Loading />
+          ) : (
+            <ManagerForm
+              id={id}
+              formRef={formRef}
+              status={status}
+              defaultValues={defaultValues}
+              handleClose={handleClose}
+              handleStateSubmit={handleStateSubmit}
+            />
+          )}
         </DialogContent>
         <DialogActions>
-          <Button variant={"contained"} color={"inherit"} onClick={handleClose}>
+          <LoadingButton
+            variant={"contained"}
+            color={"inherit"}
+            onClick={handleClose}
+          >
             Cancel
-          </Button>
-          <Button variant={"contained"} onClick={handleClose}>
-            Create
-          </Button>
+          </LoadingButton>
+          <LoadingButton
+            variant={"contained"}
+            onClick={handleSubmit}
+            loading={submit}
+          >
+            {labelStatus}
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </>

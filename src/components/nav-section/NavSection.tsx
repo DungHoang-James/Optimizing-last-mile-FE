@@ -28,14 +28,14 @@ type Item = {
   title: string;
   path: string;
   icon: React.ReactNode;
-  info: string;
+  info?: string;
 };
 
 type NavItemProps = {
   item: Item;
 };
 
-function NavItem({ item }: NavItemProps) {
+export function NavItem({ item }: NavItemProps) {
   const { title, path, icon, info } = item;
 
   return (

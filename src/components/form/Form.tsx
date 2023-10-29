@@ -1,9 +1,18 @@
-import type { PropsWithChildren } from "react";
+import { forwardRef, type PropsWithChildren } from "react";
 
-type Props = PropsWithChildren & React.FormHTMLAttributes<HTMLFormElement>;
+type Props = PropsWithChildren &
+  React.FormHTMLAttributes<HTMLFormElement> &
+  React.ClassAttributes<HTMLFormElement>;
 
-function Form({ children, ...rest }: Props): JSX.Element {
-  return <form {...rest}>{children}</form>;
-}
+const Form = forwardRef<HTMLFormElement, Props>(function Form(
+  { children, ...rest },
+  ref
+): JSX.Element {
+  return (
+    <form ref={ref} {...rest}>
+      {children}
+    </form>
+  );
+});
 
 export default Form;

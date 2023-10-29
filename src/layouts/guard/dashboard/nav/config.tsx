@@ -1,42 +1,46 @@
-import SvgColor from "@/components/svg-color";
-import type { NavConfig } from "@/types/NavConfig";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MopedIcon from "@mui/icons-material/Moped";
+import PersonIcon from "@mui/icons-material/Person";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import SettingsIcon from "@mui/icons-material/Settings";
+import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 
-const icon = (name: string) => (
-  <SvgColor
-    src={`/assets/icons/navbar/${name}.svg`}
-    sx={{ width: 1, height: 1 }}
-  />
-);
+import type { NavConfig } from "@/types/NavConfig";
 
 const navConfig: NavConfig[] = [
   {
     title: "Managers",
     path: "/dashboard/managers",
-    icon: icon("ic_user"),
+    icon: <SupervisedUserCircleIcon />,
   },
   {
     title: "Profile",
     path: "/dashboard/profile",
-    icon: icon("ic_user"),
+    icon: <PersonIcon />,
   },
   {
     title: "Setting",
     path: "/dashboard/setting",
-    icon: icon("ic_user"),
+    icon: <SettingsIcon />,
   },
 ];
 
 const managerNavConfig: NavConfig[] = [
   {
-    title: "Order",
-    path: "/dashboard/order",
-    icon: icon("ic_analytics"),
+    title: "Drivers",
+    path: "/dashboard/drivers",
+    icon: <MopedIcon />,
   },
   {
-    title: "Driver",
-    path: "/dashboard/driver",
-    icon: icon("ic_analytics"),
+    title: "Orders",
+    path: "/dashboard/orders",
+    icon: <ReceiptLongIcon />,
   },
 ];
+const logoutNav: NavConfig = {
+  title: "Logout",
+  path: "/login",
+  icon: <LogoutIcon />,
+};
 
-export { navConfig, managerNavConfig };
+export { managerNavConfig, navConfig, logoutNav };

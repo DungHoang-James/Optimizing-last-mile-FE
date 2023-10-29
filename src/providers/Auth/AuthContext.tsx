@@ -1,6 +1,8 @@
+import jwtDecode from "jwt-decode";
 import type { Reducer } from "react";
 import { createContext } from "react";
 
+import type { JWTDecode, ROLE } from "@/types";
 import storage from "@/utils/storage";
 
 enum Types {
@@ -9,11 +11,12 @@ enum Types {
   LOGOUT = "LOGOUT",
 }
 
-const tokenTest = "jwt12345";
-
 export type TDefaultAuthValue = {
   loading: boolean;
   isAuthenticated: boolean;
+  jwtToken?: string;
+  role?: ROLE;
+  id?: string;
 };
 
 type TAuthContext = {
@@ -22,9 +25,15 @@ type TAuthContext = {
 };
 
 type AuthPayload = {
-  [Types.LOADING]: Omit<TDefaultAuthValue, "isAuthenticated">;
+  [Types.LOADING]: Omit<
+    TDefaultAuthValue,
+    "isAuthenticated" | "jwtToken" | "role"
+  >;
   [Types.LOGIN]: TDefaultAuthValue;
-  [Types.LOGOUT]: TDefaultAuthValue;
+  [Types.LOGOUT]: Omit<
+    TDefaultAuthValue,
+    "isAuthenticated" | "jwtToken" | "role"
+  >;
 };
 
 export type AuthActions = ActionMap<AuthPayload>[keyof ActionMap<AuthPayload>];
@@ -43,6 +52,7 @@ const AuthReducer: Reducer<TDefaultAuthValue, AuthActions> = (
   prevState,
   action
 ): TDefaultAuthValue => {
+  let decodeJWT: JWTDecode | null = null;
   switch (action.type) {
     case Types.LOADING:
       return {
@@ -51,11 +61,25 @@ const AuthReducer: Reducer<TDefaultAuthValue, AuthActions> = (
         isAuthenticated: false,
       };
     case Types.LOGIN:
-      storage.setToken(tokenTest);
-      return { ...prevState, loading: false, isAuthenticated: true };
+      if (action.payload.jwtToken && !storage.getToken()) {
+        storage.setToken(action.payload.jwtToken);
+      }
+
+      if (action.payload.jwtToken) {
+        decodeJWT = jwtDecode(action.payload.jwtToken);
+      }
+
+      return {
+        ...prevState,
+        loading: false,
+        isAuthenticated: true,
+        jwtToken: action?.payload?.jwtToken,
+        role: decodeJWT?.AuthRole,
+        id: decodeJWT?.sub,
+      };
     case Types.LOGOUT:
       storage.clearToken();
-      return { ...prevState, loading: false, isAuthenticated: false };
+      return { loading: false, isAuthenticated: false };
     default:
       return prevState;
   }
