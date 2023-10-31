@@ -24,3 +24,8 @@ export interface DriverProfile {
   vehicleRegistrationCertificateFrontUrl?: string;
   vehicleRegistrationCertificateBackUrl?: string;
 }
+
+export type DriverStatusPayload = {
+  id: number;
+  status: number;
+};

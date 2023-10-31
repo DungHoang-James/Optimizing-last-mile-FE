@@ -44,7 +44,7 @@ export default function DriverTable() {
 
   const debounceSearch = useDebounce(pagination.search, 300);
 
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: [
       "/account-profile/drivers",
       {
@@ -62,6 +62,10 @@ export default function DriverTable() {
       queryClient.cancelQueries({ queryKey: ["/managers", {}] });
     };
   }, []);
+
+  const handleRefetch = () => {
+    refetch();
+  };
 
   const handleChangePage = (
     _: MouseEvent<HTMLButtonElement> | null,
@@ -124,7 +128,11 @@ export default function DriverTable() {
                     <Status status={driver.status} />
                   </TableCell>
                   <TableCell align="left">
-                    <DriverAction id={driver.id} status={driver.status} />
+                    <DriverAction
+                      id={driver.id}
+                      status={driver.status}
+                      handleRefetch={handleRefetch}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
