@@ -8,7 +8,7 @@ import { updateStatusDriverService } from "@/services/driver";
 import { ACTIVE, INACTIVE, PENDING, REJECT } from "@/utils/constants";
 
 type Props = {
-  id: number;
+  id?: number;
   status: number;
   handleRefetch: () => void;
   handleCloseMenu: () => void;
@@ -28,7 +28,9 @@ export default function DriverStatus({
   });
 
   const onChange = (status: number) => {
-    mutate({ id, status });
+    if (id) {
+      mutate({ id, status });
+    }
   };
 
   if (status === PENDING) return <DriverPending onChange={onChange} />;

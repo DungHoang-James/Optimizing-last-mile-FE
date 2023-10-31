@@ -8,7 +8,7 @@ import { NEW, REJECT } from "@/utils/constants";
 import { DriverStatus } from ".";
 
 type Props = {
-  id: number;
+  id?: number;
   status: number;
   handleRefetch: () => void;
 };
