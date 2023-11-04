@@ -1,4 +1,4 @@
-import { IconButton, Popover } from "@mui/material";
+import { Box, IconButton, Popover } from "@mui/material";
 import type { MouseEvent } from "react";
 import { useState } from "react";
 
@@ -21,17 +21,23 @@ export default function DriverAction({
   const [open, setOpen] = useState<HTMLButtonElement | null>(null);
 
   const handleOpenMenu = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setOpen(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = (event: MouseEvent<HTMLButtonElement>) => {
+    event?.stopPropagation();
+    setOpen(null);
+  };
+
+  const handleClose = () => {
     setOpen(null);
   };
 
   const disabled = status === NEW || status === REJECT;
 
   return (
-    <>
+    <Box>
       <IconButton
         disabled={disabled}
         size="large"
@@ -62,9 +68,9 @@ export default function DriverAction({
           id={id}
           status={status}
           handleRefetch={handleRefetch}
-          handleCloseMenu={handleCloseMenu}
+          handleCloseMenu={handleClose}
         />
       </Popover>
-    </>
+    </Box>
   );
 }

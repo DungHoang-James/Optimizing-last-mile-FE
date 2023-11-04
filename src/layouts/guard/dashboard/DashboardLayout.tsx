@@ -4,8 +4,13 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import ScrollToTop from "@/components/scroll-to-top/ScrollToTop";
-import { useAuth } from "@/hooks";
-import { ADMIN_PATH, MANAGER_PATH } from "@/routes/routes";
+import { useAuth, useCurrentPath } from "@/hooks";
+import {
+  ADMIN_PATH,
+  ADMIN_ROUTES,
+  MANAGER_PATH,
+  MANAGER_ROUTES,
+} from "@/routes/routes";
 
 import Header from "./header";
 import Nav from "./nav";
@@ -39,15 +44,20 @@ export default function DashboardLayout(): JSX.Element {
 
   const navigate = useNavigate();
   const location = useLocation();
-
   const { state } = useAuth();
 
-  const isValidPath =
-    state.role === "ADMIN"
-      ? ADMIN_PATH.includes(location.pathname)
-      : MANAGER_PATH.includes(location.pathname);
+  const currentPath = useCurrentPath(
+    state.role === "ADMIN" ? ADMIN_ROUTES : MANAGER_ROUTES,
+    location
+  );
 
   useEffect(() => {
+    if (!currentPath) return;
+    const isValidPath =
+      state.role === "ADMIN"
+        ? ADMIN_PATH.includes(currentPath)
+        : MANAGER_PATH.includes(currentPath);
+
     if (!state.isAuthenticated && !state.role) {
       return navigate("/login", { replace: true });
     }
@@ -57,7 +67,7 @@ export default function DashboardLayout(): JSX.Element {
     return navigate(state.role === "ADMIN" ? ADMIN_PATH[0] : MANAGER_PATH[0], {
       replace: true,
     });
-  }, [state.isAuthenticated, state.role]);
+  }, [state.isAuthenticated, state.role, currentPath]);
 
   if (state.loading || !state.isAuthenticated) return <LinearProgress />;
   return (

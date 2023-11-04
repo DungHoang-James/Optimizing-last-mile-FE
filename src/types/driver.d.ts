@@ -10,7 +10,7 @@ export interface DriverResponse {
 
 export interface DriverProfile {
   name?: string;
-  birthDay?: Date;
+  birthDay?: string;
   avatarUrl?: string;
   province?: string;
   district?: string;

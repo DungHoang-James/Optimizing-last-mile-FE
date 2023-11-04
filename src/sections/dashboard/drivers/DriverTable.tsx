@@ -12,8 +12,8 @@ import {
 import type { ChangeEvent, MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
-import Label from "@/components/label";
 import { ListHead } from "@/components/list-head";
 import { ListToolbar } from "@/components/list-toolbar";
 import { Status } from "@/components/status";
@@ -30,7 +30,6 @@ const TABLE_HEAD: TableHead[] = [
   { id: "username", label: "Username", alignRight: false },
   { id: "email", label: "Email", alignRight: false },
   { id: "phoneContact", label: "Phone Number", alignRight: false },
-  { id: "role", label: "Role", alignRight: false },
   { id: "status", label: "Status", alignRight: false },
   { id: "", label: "Action", alignRight: false },
 ];
@@ -42,13 +41,15 @@ export default function DriverTable() {
     pageSize: 10,
   });
 
+  const navigate = useNavigate();
+
   const debounceSearch = useDebounce(pagination.search, 300);
 
   const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: [
       "/account-profile/drivers",
       {
-        search: debounceSearch,
+        ...(debounceSearch && { search: debounceSearch }),
         page: pagination.page + 1,
         limit: pagination.pageSize,
       },
@@ -89,6 +90,11 @@ export default function DriverTable() {
     setPagination((prev) => ({ ...prev, search: event.target.value }));
   };
 
+  const handleViewDetail = (id?: number) => {
+    if (!id) return;
+    navigate(`/dashboard/drivers/${id}`);
+  };
+
   const emptyRows =
     pagination.page > 0
       ? Math.max(
@@ -112,17 +118,20 @@ export default function DriverTable() {
             <ListHead headLabel={TABLE_HEAD} />
             <TableBody>
               {data?.data.result?.data.map((driver: DriverResponse) => (
-                <TableRow hover key={driver.id} tabIndex={-1}>
+                <TableRow
+                  hover
+                  key={driver.id}
+                  tabIndex={-1}
+                  sx={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleViewDetail(driver.id)}
+                >
                   <TableCell align="left">{driver.id}</TableCell>
                   <TableCell align="left">{driver.username}</TableCell>
                   <TableCell align="left">{driver.email || "N/A"}</TableCell>
                   <TableCell align="left">
                     {driver.phoneNumber || "N/A"}
-                  </TableCell>
-                  <TableCell align="left">
-                    <Label color={"default"}>
-                      {driver.role === 2 && "Driver"}
-                    </Label>
                   </TableCell>
                   <TableCell align="left">
                     <Status status={driver.status} />

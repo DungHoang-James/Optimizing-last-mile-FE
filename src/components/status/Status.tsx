@@ -1,3 +1,5 @@
+import type { SxProps } from "@mui/material";
+
 import Label from "@/components/label";
 import type { Color } from "@/components/label/Label";
 
@@ -18,8 +20,13 @@ const STATUS: Status = {
 
 type Props = {
   status: number;
+  sx?: SxProps;
 };
 
-export default function Status({ status }: Props): JSX.Element {
-  return <Label color={STATUS[status].color}>{STATUS[status].label}</Label>;
+export default function Status({ status, sx }: Props): JSX.Element {
+  return (
+    <Label color={STATUS[status].color} sx={sx}>
+      {STATUS[status].label}
+    </Label>
+  );
 }

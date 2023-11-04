@@ -2,6 +2,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
 import { MenuItem } from "@mui/material";
+import type { MouseEvent } from "react";
 import { useMutation } from "react-query";
 
 import { updateStatusDriverService } from "@/services/driver";
@@ -27,7 +28,8 @@ export default function DriverStatus({
     },
   });
 
-  const onChange = (status: number) => {
+  const onChange = (event: MouseEvent<HTMLLIElement>, status: number) => {
+    event.stopPropagation();
     if (id) {
       mutate({ id, status });
     }
@@ -39,17 +41,17 @@ export default function DriverStatus({
 }
 
 type DriverProps = {
-  onChange: (status: number) => void;
+  onChange: (event: MouseEvent<HTMLLIElement>, status: number) => void;
 };
 
 const DriverPending = ({ onChange }: DriverProps) => {
   return (
     <>
-      <MenuItem onClick={() => onChange(ACTIVE)}>
+      <MenuItem onClick={(event) => onChange(event, ACTIVE)}>
         <CheckIcon sx={{ mr: 2 }} color={"success"} />
         Active
       </MenuItem>
-      <MenuItem onClick={() => onChange(REJECT)}>
+      <MenuItem onClick={(event) => onChange(event, REJECT)}>
         <CloseIcon sx={{ mr: 2 }} color={"error"} />
         Rejected
       </MenuItem>
@@ -60,7 +62,7 @@ const DriverPending = ({ onChange }: DriverProps) => {
 const DriverActive = ({ onChange }: DriverProps) => {
   return (
     <>
-      <MenuItem onClick={() => onChange(INACTIVE)}>
+      <MenuItem onClick={(event) => onChange(event, INACTIVE)}>
         <LockPersonIcon sx={{ mr: 2 }} color={"disabled"} />
         Inactive
       </MenuItem>
@@ -71,7 +73,7 @@ const DriverActive = ({ onChange }: DriverProps) => {
 const DriverInactive = ({ onChange }: DriverProps) => {
   return (
     <>
-      <MenuItem onClick={() => onChange(ACTIVE)}>
+      <MenuItem onClick={(event) => onChange(event, ACTIVE)}>
         <CheckIcon sx={{ mr: 2 }} />
         Active
       </MenuItem>

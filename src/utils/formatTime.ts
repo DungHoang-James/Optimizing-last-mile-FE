@@ -5,10 +5,10 @@ dayjs.extend(relativeTime);
 
 // ----------------------------------------------------------------------
 
-export function fDate(date: string, newFormat?: string) {
+export function fDate(date?: string, newFormat?: string) {
   const fm = newFormat || "DD/MM/YYYY";
 
-  return date ? dayjs(new Date(date)).format(fm) : "";
+  return date ? dayjs(new Date(date)).format(fm) : "N/A";
 }
 
 export function fDateTime(date: string, newFormat?: string) {

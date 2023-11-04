@@ -36,8 +36,7 @@ export default function Nav({ openNav, onCloseNav }: Props) {
 
   const { data } = useQuery({
     queryKey: [`/account-profile/${state.id}`],
-    queryFn: ({ queryKey, signal }) =>
-      fetchWithGet<AccountResponse>({ queryKey, signal }),
+    queryFn: ({ queryKey }) => fetchWithGet<AccountResponse>({ queryKey }),
     select: (data) => {
       return {
         displayName: data?.data.result?.username,
@@ -68,10 +67,10 @@ export default function Nav({ openNav, onCloseNav }: Props) {
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                {data?.displayName}
+                {data?.displayName || ""}
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                {data?.role}
+                {data?.role || ""}
               </Typography>
             </Box>
           </StyledAccount>
