@@ -3,7 +3,7 @@ import type { AxiosResponse } from "axios";
 import { request } from "@/lib/request";
 import type { LoginPayload, LoginResponse, Response } from "@/types";
 
-export const loginService = async (
+export const loginMutation = async (
   data: LoginPayload
 ): Promise<AxiosResponse<Response<LoginResponse>, any> | undefined> => {
   return request({

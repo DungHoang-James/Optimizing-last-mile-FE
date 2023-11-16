@@ -1,14 +1,13 @@
 import { Card, Container, Stack, Typography } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
-import { ManagerCreate } from "@/sections/dashboard/managers";
-import ManagersTable from "@/sections/dashboard/managers/ManagersTable";
+import { OrderCreate, OrdersTable } from "@/sections/dashboard/orders";
 
-export default function ManagersPage(): JSX.Element {
+export default function OrderPage() {
   return (
     <>
       <Helmet>
-        <title>Manager Account</title>
+        <title>Orders</title>
       </Helmet>
       <Container maxWidth={"xl"}>
         <Stack
@@ -18,12 +17,12 @@ export default function ManagersPage(): JSX.Element {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Manager Account
+            Orders
           </Typography>
-          <ManagerCreate />
+          <OrderCreate />
         </Stack>
         <Card>
-          <ManagersTable />
+          <OrdersTable />
         </Card>
       </Container>
     </>

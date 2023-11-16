@@ -24,6 +24,7 @@ import TablePagination from "./TablePagination";
 import Tabs from "./Tabs";
 import Timeline from "./Timeline";
 import Typography from "./Typography";
+import Grid from "./Grid";
 
 // ----------------------------------------------------------------------
 
@@ -51,6 +52,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Chip(theme),
     Tabs(theme),
     Avatar(theme),
-    Select(theme)
+    Select(theme),
+    Grid()
   );
 }

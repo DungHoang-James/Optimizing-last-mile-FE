@@ -20,18 +20,18 @@ import { Status } from "@/components/status";
 import { useDebounce } from "@/hooks";
 import { queryClient } from "@/lib/react-query";
 import { fetchWithGet } from "@/lib/request";
-import type { Pagination, StateNavigation } from "@/types";
+import type { Pagination, StateNavigation, TableHead } from "@/types";
 import type { DriverResponse } from "@/types/driver";
 
 import { DriverAction } from ".";
 
 const TABLE_HEAD: TableHead[] = [
-  { id: "id", label: "ID", alignRight: false },
-  { id: "username", label: "Username", alignRight: false },
-  { id: "email", label: "Email", alignRight: false },
-  { id: "phoneContact", label: "Phone Number", alignRight: false },
-  { id: "status", label: "Status", alignRight: false },
-  { id: "", label: "Action", alignRight: false },
+  { id: "id", label: "ID", align: "center" },
+  { id: "username", label: "Username", align: "center" },
+  { id: "email", label: "Email", align: "center" },
+  { id: "phoneContact", label: "Phone Number", align: "center" },
+  { id: "status", label: "Status", align: "center" },
+  { id: "", label: "Action", align: "center" },
 ];
 
 export default function DriverTable() {

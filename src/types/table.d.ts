@@ -1,5 +1,8 @@
-type TableHead = {
+import { TableCellProps } from "@mui/material";
+
+export type TableHead = {
   id: string;
   label: string;
-  alignRight: boolean;
+  align: TableCellProps["align"];
+  subHead?: TableHead[];
 };

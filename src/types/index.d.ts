@@ -9,3 +9,5 @@ export * from "./account";
 export * from "./driver";
 export * from "./table";
 export * from "./status";
+export * from "./prediction";
+export * from "./order";

@@ -22,6 +22,8 @@
     "@emotion/styled": "^11.11.0",
     "@faker-js/faker": "^8.1.0",
     "@fontsource/public-sans": "^5.0.12",
+    "@goongmaps/goong-js": "^1.0.9",
+    "@goongmaps/goong-map-react": "^1.1.2",
     "@hookform/resolvers": "^3.3.2",
     "@iconify/react": "^4.1.1",
     "@mui/icons-material": "^5.14.12",
@@ -46,6 +48,7 @@
     "zustand": "^4.4.3"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "@types/lodash": "^4.14.199",
     "@types/node": "^20.8.3",
     "@types/react": "^18.2.15",

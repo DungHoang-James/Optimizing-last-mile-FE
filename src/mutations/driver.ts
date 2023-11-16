@@ -3,7 +3,7 @@ import type { AxiosResponse } from "axios";
 import { request } from "@/lib/request";
 import type { DriverStatusPayload, Response } from "@/types";
 
-export const updateStatusDriverService = async ({
+export const updateStatusDriverMutation = async ({
   id,
   status,
 }: DriverStatusPayload): Promise<

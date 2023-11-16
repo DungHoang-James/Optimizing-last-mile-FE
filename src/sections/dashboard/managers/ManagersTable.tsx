@@ -27,19 +27,20 @@ import {
   ManagerListToolbar,
   ManagerStatus,
 } from ".";
+import { TableHead } from "@/types";
 
 const TABLE_HEAD: TableHead[] = [
-  { id: "id", label: "ID", alignRight: false },
-  { id: "name", label: "Name", alignRight: false },
-  { id: "username", label: "Username", alignRight: false },
-  { id: "phoneContact", label: "Phone Number", alignRight: false },
-  { id: "birthDay", label: "DoB", alignRight: false },
-  { id: "ward", label: "Ward", alignRight: false },
-  { id: "district", label: "District", alignRight: false },
-  { id: "province", label: "Province", alignRight: false },
-  { id: "address", label: "Address", alignRight: false },
-  { id: "status", label: "Status", alignRight: false },
-  { id: "", label: "Action", alignRight: false },
+  { id: "id", label: "ID", align: "center" },
+  { id: "name", label: "Name", align: "center" },
+  { id: "username", label: "Username", align: "center" },
+  { id: "phoneContact", label: "Phone Number", align: "center" },
+  { id: "birthDay", label: "DoB", align: "center" },
+  { id: "ward", label: "Ward", align: "center" },
+  { id: "district", label: "District", align: "center" },
+  { id: "province", label: "Province", align: "center" },
+  { id: "address", label: "Address", align: "center" },
+  { id: "status", label: "Status", align: "center" },
+  { id: "", label: "Action", align: "center" },
 ];
 
 export default function ManagersTable() {

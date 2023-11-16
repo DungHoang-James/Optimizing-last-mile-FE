@@ -37,7 +37,7 @@ export default function ManagerCreate(): JSX.Element {
         open={open}
         handleClose={handleDialog}
         status={"create"}
-        defaultValues={defaultValues}
+        defaultValues={defaultValues as any}
       />
     </>
   );

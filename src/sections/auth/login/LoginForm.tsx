@@ -17,7 +17,7 @@ import Form from "@/components/form";
 import Iconify from "@/components/iconify";
 import { useAuth } from "@/hooks";
 import { Types } from "@/providers/Auth/AuthContext";
-import { loginService } from "@/services/auth";
+import { loginMutation } from "@/mutations/auth";
 
 type FormValues = {
   username: string;
@@ -30,7 +30,7 @@ const loginSchema = yup.object({
 });
 
 export default function LoginForm(): JSX.Element {
-  const { mutate, isLoading } = useMutation(loginService);
+  const { mutate, isLoading } = useMutation(loginMutation);
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       username: "",

@@ -5,7 +5,7 @@ import { MenuItem } from "@mui/material";
 import type { MouseEvent } from "react";
 import { useMutation } from "react-query";
 
-import { updateStatusDriverService } from "@/services/driver";
+import { updateStatusDriverMutation } from "@/mutations/driver";
 import { ACTIVE, INACTIVE, PENDING, REJECT } from "@/utils/constants";
 
 type Props = {
@@ -21,7 +21,7 @@ export default function DriverStatus({
   handleRefetch,
   handleCloseMenu,
 }: Props) {
-  const { mutate } = useMutation(updateStatusDriverService, {
+  const { mutate } = useMutation(updateStatusDriverMutation, {
     onSuccess: () => {
       handleRefetch();
       handleCloseMenu();

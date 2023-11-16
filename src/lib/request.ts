@@ -20,18 +20,26 @@ export const request = async (config: AxiosRequestConfig) => {
   }
 };
 
-export const fetchWithGet = <T>({
+export const fetchWithGet = <
+  T,
+  TBaseURL extends string | undefined = undefined,
+>({
   queryKey,
   signal,
+  baseURL,
 }: {
   queryKey: any;
   signal?: AbortSignal;
-}): Promise<AxiosResponse<Response<T>, any> | undefined> => {
+  baseURL?: TBaseURL;
+}): Promise<
+  AxiosResponse<TBaseURL extends string ? T : Response<T>, any> | undefined
+> => {
   return request({
     method: "GET",
     params: removeNullUndefined(queryKey[1]),
     url: queryKey[0],
     signal,
+    baseURL,
   });
 };
 

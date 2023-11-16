@@ -7,7 +7,7 @@ import type {
   UpdateManagerPayload,
 } from "@/types";
 
-export const createManagerService = async (
+export const createManagerMutation = async (
   payload: CreateManagerPayload
 ): Promise<AxiosResponse<Response<any>, any> | undefined> => {
   return request({
@@ -17,7 +17,7 @@ export const createManagerService = async (
   });
 };
 
-export const updateManagerService = async (
+export const updateManagerMutation = async (
   data: UpdateManagerPayload,
   id: number
 ): Promise<AxiosResponse<Response<any>, any> | undefined> => {
@@ -28,7 +28,7 @@ export const updateManagerService = async (
   });
 };
 
-export const deleteManagerService = async (id: number) => {
+export const deleteManagerMutation = async (id: number) => {
   return request({
     url: `/managers/${id}`,
     method: "DELETE",

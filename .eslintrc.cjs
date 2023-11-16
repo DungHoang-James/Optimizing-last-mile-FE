@@ -79,6 +79,9 @@ module.exports = {
         "@typescript-eslint/no-explicit-any": ["off"],
         "@typescript-eslint/consistent-type-imports": "error",
         "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+        "@typescript-eslint/ban-ts-comment": {
+          "ts-expect-error": "allow-with-description",
+        },
       },
     },
   ],

@@ -1,15 +1,13 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Iconify from "@/components/iconify";
 
-import { OrderDialog } from ".";
-
 export default function OrderCreate() {
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleDialog = () => {
-    setOpen((prev) => !prev);
+  const handleCreate = () => {
+    navigate("/dashboard/orders/new");
   };
 
   return (
@@ -17,11 +15,10 @@ export default function OrderCreate() {
       <Button
         variant="contained"
         startIcon={<Iconify icon="eva:plus-fill" />}
-        onClick={handleDialog}
+        onClick={handleCreate}
       >
         New Manager
       </Button>
-      <OrderDialog open={open} handleClose={handleDialog} status={"create"} />
     </>
   );
 }

@@ -19,7 +19,10 @@ import { date, object, string } from "yup";
 import Form from "@/components/form";
 import Iconify from "@/components/iconify";
 import { queryClient } from "@/lib/react-query";
-import { createManagerService, updateManagerService } from "@/services/manager";
+import {
+  createManagerMutation,
+  updateManagerMutation,
+} from "@/mutations/manager";
 import type {
   CreateManagerPayload,
   Manager,
@@ -100,7 +103,7 @@ export default function ManagerForm({
   >({
     defaultValues: defaultValues,
     resolver: yupResolver(
-      status === "create" ? managerSchemaCreate : managerSchemaEdit
+      status === "create" ? managerSchemaCreate : managerSchemaEdit as any
     ),
   });
 
@@ -112,8 +115,8 @@ export default function ManagerForm({
   >({
     mutationFn: (data) =>
       status === "create"
-        ? createManagerService(data as CreateManagerPayload)
-        : updateManagerService(data, id as number),
+        ? createManagerMutation(data as CreateManagerPayload)
+        : updateManagerMutation(data, id as number),
     onSuccess: () => {
       handleStateSubmit();
       handleClose();

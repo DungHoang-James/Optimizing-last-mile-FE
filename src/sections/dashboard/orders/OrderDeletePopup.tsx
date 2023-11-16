@@ -1,21 +1,26 @@
 import { LoadingButton } from "@mui/lab";
 import { Dialog, DialogActions, DialogTitle, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { useMutation } from "react-query";
 
 import Iconify from "@/components/iconify";
-import { deleteManagerMutation } from "@/mutations/manager";
+import { deleteOrderMutation } from "@/mutations/order";
 
 type Props = {
-  id?: number;
+  id?: string;
+  disabled: boolean;
   handleRefetch: () => void;
 };
 
-export default function ManagerDeletePopup({ id, handleRefetch }: Props) {
+export default function OrderDeletePopup({
+  id,
+  disabled,
+  handleRefetch,
+}: Props) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { mutate } = useMutation(deleteManagerMutation, {
+  const { mutate } = useMutation(deleteOrderMutation, {
     onSuccess: () => {
       toggleLoading();
       handleRefetch();
@@ -28,11 +33,13 @@ export default function ManagerDeletePopup({ id, handleRefetch }: Props) {
     },
   });
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (event: MouseEvent<HTMLLIElement>) => {
+    event.stopPropagation();
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (event?: MouseEvent<HTMLButtonElement>) => {
+    event?.stopPropagation();
     setOpen(false);
   };
 
@@ -40,7 +47,8 @@ export default function ManagerDeletePopup({ id, handleRefetch }: Props) {
     setLoading((prev) => !prev);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (event: MouseEvent<HTMLButtonElement>) => {
+    event?.stopPropagation();
     if (id) {
       toggleLoading();
       mutate(id);
@@ -49,13 +57,17 @@ export default function ManagerDeletePopup({ id, handleRefetch }: Props) {
 
   return (
     <>
-      <MenuItem sx={{ color: "error.main" }} onClick={handleClickOpen}>
+      <MenuItem
+        disabled={disabled}
+        sx={{ color: "error.main" }}
+        onClick={handleClickOpen}
+      >
         <Iconify icon={"eva:trash-2-outline"} sx={{ mr: 2 }} />
         Delete
       </MenuItem>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={() => handleClose()}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >

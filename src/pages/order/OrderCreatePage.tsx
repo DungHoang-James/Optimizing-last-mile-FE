@@ -1,28 +1,26 @@
-import { Card, Container, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
-import DriverTable from "@/sections/dashboard/drivers/DriverTable";
+import { OrderForm } from "@/sections/dashboard/orders";
 
-export default function DriverPage() {
+export default function OrderCreatePage() {
   return (
     <>
       <Helmet>
-        <title>Drivers</title>
+        <title>New Order</title>
       </Helmet>
-      <Container maxWidth={"xl"}>
+      <Container>
         <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-between"
-          mb={5}
+          mb={2}
         >
           <Typography variant="h4" gutterBottom>
-            Drivers
+            New Order
           </Typography>
         </Stack>
-        <Card>
-          <DriverTable />
-        </Card>
+        <OrderForm status={"new"} />
       </Container>
     </>
   );

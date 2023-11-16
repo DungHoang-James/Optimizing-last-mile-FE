@@ -1,5 +1,10 @@
 export { default as OrdersTable } from "./OrdersTable";
 export { default as OrderCreate } from "./OrderCreate";
 export { default as OrderAction } from "./OrderAction";
-export { default as OrderDialog } from "./OrderDialog";
-export { default as OrderForm } from "./OrderForm";
+export { default as OrderForm } from "./OrderForm/OrderForm";
+export { default as OrderAddress } from "./OrderForm/OrderAddress";
+export { default as OrderRecipient } from "./OrderForm/OrderRecipient";
+export { default as OrderInformation } from "./OrderForm/OrderInformation";
+export { default as OrderStatus } from "./OrderStatus";
+export { default as OrderTableListHead } from "./OrderTableListHead";
+export { default as OrderDeletePopup } from "./OrderDeletePopup";

@@ -17,6 +17,8 @@ export const MANAGER_PATH = [
   "/dashboard/drivers",
   "/dashboard/drivers/:id",
   "/dashboard/orders",
+  "/dashboard/orders/new",
+  "/dashboard/orders/:id",
 ];
 
 export const ADMIN_ROUTES: RouteObject[] = [
@@ -50,8 +52,26 @@ export const MANAGER_ROUTES: RouteObject[] = [
   {
     path: "/dashboard/orders",
     async lazy() {
-      const { default: OrderPage } = await import("../pages/OrderPage");
+      const { default: OrderPage } = await import("../pages/order/OrderPage");
       return { Component: OrderPage };
+    },
+  },
+  {
+    path: "/dashboard/orders/new",
+    async lazy() {
+      const { default: OrderCreatePage } = await import(
+        "../pages/order/OrderCreatePage"
+      );
+      return { Component: OrderCreatePage };
+    },
+  },
+  {
+    path: "/dashboard/orders/:id",
+    async lazy() {
+      const { default: OrderEditPage } = await import(
+        "../pages/order/OrderEditPage"
+      );
+      return { Component: OrderEditPage };
     },
   },
   {

@@ -11,3 +11,5 @@ export const STATUS: Status = {
   [PENDING]: { label: "Pending", color: "warning" },
   [REJECT]: { label: "Reject", color: "error" },
 };
+
+export const DELETE = 6;
