@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import type { ChangeEvent, MouseEvent } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,6 @@ import { ListHead } from "@/components/list-head";
 import { ListToolbar } from "@/components/list-toolbar";
 import { Status } from "@/components/status";
 import { useDebounce } from "@/hooks";
-import { queryClient } from "@/lib/react-query";
 import { fetchWithGet } from "@/lib/request";
 import type { Pagination, StateNavigation, TableHead } from "@/types";
 import type { DriverResponse } from "@/types/driver";
@@ -26,7 +25,7 @@ import type { DriverResponse } from "@/types/driver";
 import { DriverAction } from ".";
 
 const TABLE_HEAD: TableHead[] = [
-  { id: "id", label: "ID", align: "center" },
+  { id: "id", label: "STT", align: "center" },
   { id: "username", label: "Username", align: "center" },
   { id: "email", label: "Email", align: "center" },
   { id: "phoneContact", label: "Phone Number", align: "center" },
@@ -57,12 +56,6 @@ export default function DriverTable() {
     queryFn: ({ queryKey, signal }) =>
       fetchWithGet<Pagination<DriverResponse>>({ queryKey, signal }),
   });
-
-  useEffect(() => {
-    return () => {
-      queryClient.cancelQueries({ queryKey: ["/managers", {}] });
-    };
-  }, []);
 
   const handleRefetch = () => {
     refetch();

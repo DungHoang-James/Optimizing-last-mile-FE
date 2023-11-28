@@ -10,13 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import type { ChangeEvent, MouseEvent } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import { ListToolbar } from "@/components/list-toolbar";
 import { useDebounce } from "@/hooks";
-import { queryClient } from "@/lib/react-query";
 import { fetchWithGet } from "@/lib/request";
 import type {
   OrderResponse,
@@ -95,12 +94,6 @@ export default function OrdersTable() {
       fetchWithGet<Pagination<OrderResponse>>({ queryKey, signal }),
     select: (data) => data?.data.result,
   });
-
-  useEffect(() => {
-    return () => {
-      queryClient.cancelQueries({ queryKey: ["/orders", {}] });
-    };
-  }, []);
 
   const handleRefetch = () => {
     refetch();

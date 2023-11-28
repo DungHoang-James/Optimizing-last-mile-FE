@@ -65,12 +65,6 @@ export default function ManagersTable() {
       fetchWithGet<Pagination<Managers>>({ queryKey, signal }),
   });
 
-  useEffect(() => {
-    return () => {
-      queryClient.cancelQueries({ queryKey: ["/managers"] });
-    };
-  }, []);
-
   const handleChangePage = (
     _: MouseEvent<HTMLButtonElement> | null,
     newPage: number
