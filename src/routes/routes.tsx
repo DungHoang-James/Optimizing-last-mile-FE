@@ -12,7 +12,11 @@ export const ROUTES_PATH: { [key: string]: string } = {
   "/404": "not_found",
 };
 
-export const ADMIN_PATH = ["/dashboard/managers", "/dashboard/profile"];
+export const ADMIN_PATH = [
+  "/dashboard/managers",
+  "/dashboard/profile",
+  "/dashboard/setting",
+];
 export const MANAGER_PATH = [
   "/dashboard/drivers",
   "/dashboard/drivers/:id",

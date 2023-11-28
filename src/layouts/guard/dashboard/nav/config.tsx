@@ -32,6 +32,11 @@ const managerNavConfig: NavConfig[] = [
     icon: <MopedIcon />,
   },
   {
+    title: "Profile",
+    path: "/dashboard/profile",
+    icon: <PersonIcon />,
+  },
+  {
     title: "Orders",
     path: "/dashboard/orders",
     icon: <ReceiptLongIcon />,

@@ -1,16 +1,20 @@
 import { Card, CardContent, Container, Stack, Typography } from "@mui/material";
-import dayjs from "dayjs";
 import { useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 import { Loading } from "@/components/loading";
 import { useAuth } from "@/hooks";
 import { fetchWithGet } from "@/lib/request";
+import { updateProfileMutation } from "@/mutations/profile";
 import { ProfileForm } from "@/sections/dashboard/profile";
+import { ProfileFormValue } from "@/sections/dashboard/profile/ProfileForm";
 import type { AccountResponse } from "@/types";
+import { LoadingButton } from "@mui/lab";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement | null>(null);
   const { state } = useAuth();
 
@@ -21,7 +25,7 @@ export default function ProfilePage() {
     select: (data) => {
       const defaultValues = {
         name: data?.data.result?.accountProfile?.name || "",
-        birthDay: dayjs(data?.data.result?.accountProfile?.birthDay) || null,
+        birthDay: data?.data.result?.accountProfile.birthDay as any,
         province: data?.data.result?.accountProfile?.province || "",
         district: data?.data.result?.accountProfile?.district || "",
         ward: data?.data.result?.accountProfile?.ward || "",
@@ -33,6 +37,23 @@ export default function ProfilePage() {
     },
     enabled: !!state.id,
   });
+
+  const handleSubmit = () => {
+    formRef.current?.requestSubmit();
+  };
+
+  const handleReset = () => {
+    formRef.current?.reset();
+  };
+
+  const { mutate, isLoading: isLoadingUpdate } = useMutation({
+    mutationFn: (data: ProfileFormValue) =>
+      updateProfileMutation(data, state.id as string),
+  });
+
+  const onSubmit = (data: ProfileFormValue) => {
+    mutate(data);
+  };
 
   if (!data || isLoading || isFetching) return <Loading />;
   return (
@@ -51,9 +72,33 @@ export default function ProfilePage() {
         </Stack>
         <Card>
           <CardContent>
-            <ProfileForm disabled formRef={formRef} defaultValues={data} />
+            <ProfileForm
+              disabled={!data || isLoading || isFetching}
+              formRef={formRef}
+              defaultValues={data}
+              onSubmit={onSubmit}
+            />
           </CardContent>
         </Card>
+        <Stack mt={3} direction={"row"} spacing={1} justifyContent={"flex-end"}>
+          <LoadingButton
+            size={"medium"}
+            variant={"outlined"}
+            color={"error"}
+            onClick={handleReset}
+            disabled={isLoadingUpdate}
+          >
+            Reset
+          </LoadingButton>
+          <LoadingButton
+            size={"medium"}
+            variant={"contained"}
+            onClick={handleSubmit}
+            loading={isLoadingUpdate}
+          >
+            Submit
+          </LoadingButton>
+        </Stack>
       </Container>
     </>
   );

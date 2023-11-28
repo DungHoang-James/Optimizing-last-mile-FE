@@ -5,15 +5,15 @@ export interface AccountResponse {
   username?: string;
   role?: number;
   status?: number;
-  accountProfile?: AccountProfile;
+  accountProfile: AccountProfile;
 }
 
 export interface AccountProfile {
-  name?: string;
-  birthDay?: Date;
-  province?: string;
-  district?: string;
-  ward?: string;
-  address?: string;
-  phoneContact?: string;
+  name: string;
+  birthDay: string;
+  province: string;
+  district: string;
+  ward: string;
+  address: string;
+  phoneContact: string;
 }
