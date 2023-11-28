@@ -36,7 +36,10 @@ axios.interceptors.response.use(
   (response) => {
     const successResponse: AxiosResponse = response;
 
-    if (successResponse.config.method !== "get") {
+    if (
+      successResponse.config.method !== "get" &&
+      successResponse.config.url !== "/auth/login/username"
+    ) {
       let successMessage = null;
 
       switch (successResponse.config.method) {

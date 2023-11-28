@@ -1,7 +1,7 @@
 import { LinearProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import ScrollToTop from "@/components/scroll-to-top/ScrollToTop";
 import { useAuth, useCurrentPath } from "@/hooks";
@@ -69,7 +69,8 @@ export default function DashboardLayout(): JSX.Element {
     });
   }, [state.isAuthenticated, state.role, currentPath]);
 
-  if (state.loading || !state.isAuthenticated) return <LinearProgress />;
+  if (state.loading || !state.isAuthenticated)
+    return <Navigate to={"/login"} />;
   return (
     <StyledRoot>
       <Header onOpenNav={() => setOpen(true)} />
