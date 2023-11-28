@@ -1,36 +1,35 @@
 import {
-  LinearProgress,
-  Paper,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TablePagination,
-  TableRow,
-  Typography,
+    LinearProgress,
+    Paper,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TablePagination,
+    TableRow,
+    Typography,
 } from "@mui/material";
 import type { ChangeEvent, MouseEvent } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 
 import { useDebounce } from "@/hooks";
-import { queryClient } from "@/lib/react-query";
 import { fetchWithGet } from "@/lib/request";
 import type { Managers } from "@/types/managers";
 import type { Pagination, StateNavigation } from "@/types/pagination";
 import { fDate } from "@/utils/formatTime";
 
-import {
-  ManagerAction,
-  ManagerListHead,
-  ManagerListToolbar,
-  ManagerStatus,
-} from ".";
 import { TableHead } from "@/types";
+import {
+    ManagerAction,
+    ManagerListHead,
+    ManagerListToolbar,
+    ManagerStatus,
+} from ".";
 
 const TABLE_HEAD: TableHead[] = [
-  { id: "id", label: "ID", align: "center" },
+  { id: "id", label: "STT", align: "center" },
   { id: "name", label: "Name", align: "center" },
   { id: "username", label: "Username", align: "center" },
   { id: "phoneContact", label: "Phone Number", align: "center" },
