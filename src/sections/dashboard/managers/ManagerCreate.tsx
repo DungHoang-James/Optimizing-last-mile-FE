@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Iconify from "@/components/iconify";
 
+import { faker } from "@faker-js/faker";
 import { ManagerDialog } from ".";
 
 export default function ManagerCreate(): JSX.Element {
@@ -14,7 +15,7 @@ export default function ManagerCreate(): JSX.Element {
 
   const defaultValues = {
     username: "",
-    password: "",
+    password: faker.internet.password(),
     name: "",
     birthDay: null as unknown as Date,
     province: "",
