@@ -1,5 +1,6 @@
+import type { SxProps } from "@mui/material";
+
 import Label from "@/components/label";
-import { SxProps } from "@mui/material";
 
 type Props = { status: number; sx?: SxProps };
 

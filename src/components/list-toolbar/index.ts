@@ -1,1 +1,1 @@
-export { default as ListToolbar } from "./ListToolbar";
+export { default as ListToolbar, ListToolbarMemo } from "./ListToolbar";

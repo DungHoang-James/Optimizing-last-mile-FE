@@ -1,4 +1,4 @@
-import { TableCellProps } from "@mui/material";
+import type { TableCellProps } from "@mui/material";
 
 export type TableHead = {
   id: string;

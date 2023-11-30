@@ -1,6 +1,7 @@
-import { Card, Container, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
+import OrderProvider from "@/providers/Orders/OrderProvider";
 import { OrderCreate, OrdersTable } from "@/sections/dashboard/orders";
 
 export default function OrderPage() {
@@ -21,9 +22,9 @@ export default function OrderPage() {
           </Typography>
           <OrderCreate />
         </Stack>
-        <Card>
+        <OrderProvider>
           <OrdersTable />
-        </Card>
+        </OrderProvider>
       </Container>
     </>
   );

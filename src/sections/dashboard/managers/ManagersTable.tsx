@@ -1,14 +1,14 @@
 import {
-    LinearProgress,
-    Paper,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TablePagination,
-    TableRow,
-    Typography,
+  LinearProgress,
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TablePagination,
+  TableRow,
+  Typography,
 } from "@mui/material";
 import type { ChangeEvent, MouseEvent } from "react";
 import { useState } from "react";
@@ -16,16 +16,16 @@ import { useQuery } from "react-query";
 
 import { useDebounce } from "@/hooks";
 import { fetchWithGet } from "@/lib/request";
+import type { TableHead } from "@/types";
 import type { Managers } from "@/types/managers";
 import type { Pagination, StateNavigation } from "@/types/pagination";
 import { fDate } from "@/utils/formatTime";
 
-import { TableHead } from "@/types";
 import {
-    ManagerAction,
-    ManagerListHead,
-    ManagerListToolbar,
-    ManagerStatus,
+  ManagerAction,
+  ManagerListHead,
+  ManagerListToolbar,
+  ManagerStatus,
 } from ".";
 
 const TABLE_HEAD: TableHead[] = [

@@ -1,4 +1,5 @@
-import { Alert, AlertProps, Snackbar, type SnackbarProps } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
+import type { AlertProps, SnackbarProps } from "@mui/material";
 import type { FC } from "react";
 import { create } from "zustand";
 

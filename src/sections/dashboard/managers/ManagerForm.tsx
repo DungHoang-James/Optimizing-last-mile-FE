@@ -103,7 +103,7 @@ export default function ManagerForm({
   >({
     defaultValues: defaultValues,
     resolver: yupResolver(
-      status === "create" ? managerSchemaCreate : managerSchemaEdit as any
+      status === "create" ? managerSchemaCreate : (managerSchemaEdit as any)
     ),
   });
 

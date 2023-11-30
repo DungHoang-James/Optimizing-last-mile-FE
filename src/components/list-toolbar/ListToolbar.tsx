@@ -6,7 +6,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
-import type { ChangeEvent } from "react";
+import { memo, type ChangeEvent } from "react";
 
 import Iconify from "@/components/iconify";
 
@@ -44,6 +44,7 @@ export default function ListToolbar({ filterName, onFilterName }: Props) {
   return (
     <StyledRoot>
       <StyledSearch
+        size={"small"}
         value={filterName}
         onChange={onFilterName}
         placeholder="Search name..."
@@ -65,3 +66,5 @@ export default function ListToolbar({ filterName, onFilterName }: Props) {
     </StyledRoot>
   );
 }
+
+export const ListToolbarMemo = memo(ListToolbar);

@@ -1,8 +1,11 @@
-import Iconify from "@/components/iconify";
 import { Box, IconButton, Popover } from "@mui/material";
-import { MouseEvent, useState } from "react";
-import { OrderDeletePopup } from ".";
+import type { MouseEvent } from "react";
+import { useState } from "react";
+
+import Iconify from "@/components/iconify";
 import { DELETE } from "@/utils/constants";
+
+import { OrderDeletePopup } from "..";
 
 type Props = {
   id?: string;

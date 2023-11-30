@@ -16,8 +16,8 @@ import * as yup from "yup";
 import Form from "@/components/form";
 import Iconify from "@/components/iconify";
 import { useAuth } from "@/hooks";
-import { Types } from "@/providers/Auth/AuthContext";
 import { loginMutation } from "@/mutations/auth";
+import { Types } from "@/providers/Auth/AuthContext";
 
 type FormValues = {
   username: string;

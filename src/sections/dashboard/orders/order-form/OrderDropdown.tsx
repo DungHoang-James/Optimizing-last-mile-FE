@@ -1,5 +1,3 @@
-import { fetchWithGet } from "@/lib/request";
-import { Min } from "@/types/min";
 import {
   Autocomplete,
   CircularProgress,
@@ -10,6 +8,9 @@ import {
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useQuery } from "react-query";
+
+import { fetchWithGet } from "@/lib/request";
+import type { Min } from "@/types/min";
 
 type Props = {
   name: string;

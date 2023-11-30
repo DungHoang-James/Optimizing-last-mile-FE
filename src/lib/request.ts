@@ -16,8 +16,7 @@ export const request = async (config: AxiosRequestConfig) => {
     return res;
   } catch (error) {
     const res = error as AxiosError<any>;
-    Promise.reject(error);
-    // console.log(res);
+    return Promise.reject(res);
   }
 };
 

@@ -13,7 +13,8 @@ import { GOONG_API_KEY, GOONG_API_URL } from "@/config";
 import { useDebounce } from "@/hooks";
 import { fetchWithGet } from "@/lib/request";
 import type { GoongPredictionResponse, Prediction } from "@/types";
-import { OrderFormValue } from "./OrderForm";
+
+import type { OrderFormValue } from "./OrderForm";
 
 type Props = {
   disabled: boolean;

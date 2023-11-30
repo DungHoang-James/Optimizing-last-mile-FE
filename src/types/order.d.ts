@@ -16,15 +16,15 @@ export type OrderPayload = {
 };
 
 export type OrderResponse = {
-  id?: string;
-  owner?: Driver;
-  driver?: Driver;
-  creatorId?: number;
-  shippingProvince?: string;
-  shippingDistrict?: string;
-  shippingWard?: string;
-  shippingAddress?: string;
-  expectedShippingDate?: Date;
+  id: string;
+  owner: Driver;
+  driver: Driver;
+  creatorId: number;
+  shippingProvince: string;
+  shippingDistrict: string;
+  shippingWard: string;
+  shippingAddress: string;
+  expectedShippingDate: Date;
   currentOrderStatus: number;
 };
 
@@ -60,4 +60,20 @@ export type PersonDetailResponse = {
   role: number;
   name: string;
   phoneContact: string;
+};
+
+export type OrderDriverPayload = {
+  driverId: number;
+  recipientName: string;
+  recipientPhoneNumber: string;
+  shippingProvince: string;
+  shippingDistrict: string;
+  shippingWard: string;
+  shippingAddress: string;
+  lat: number;
+  lng: number;
+  expectedShippingDate: string;
+  senderName: string;
+  senderPhoneNumber: string;
+  note: string | null;
 };

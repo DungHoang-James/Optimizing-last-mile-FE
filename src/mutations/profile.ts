@@ -1,7 +1,8 @@
+import type { AxiosResponse } from "axios";
+
 import { request } from "@/lib/request";
-import { ProfileFormValue } from "@/sections/dashboard/profile/ProfileForm";
-import { AccountResponse, Response } from "@/types";
-import { AxiosResponse } from "axios";
+import type { ProfileFormValue } from "@/sections/dashboard/profile/ProfileForm";
+import type { AccountResponse, Response } from "@/types";
 
 export const updateProfileMutation = async (
   data: ProfileFormValue,

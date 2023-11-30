@@ -1,6 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Dialog, DialogActions, DialogTitle, MenuItem } from "@mui/material";
-import { MouseEvent, useState } from "react";
+import type { MouseEvent } from "react";
+import { useState } from "react";
 import { useMutation } from "react-query";
 
 import Iconify from "@/components/iconify";

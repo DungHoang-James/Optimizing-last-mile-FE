@@ -11,6 +11,7 @@ import Card from "./Card";
 import Chip from "./Chip";
 import DataGrid from "./DataGrid";
 import FormLabel from "./FormLabel";
+import Grid from "./Grid";
 import IconButton from "./IconButton";
 import Input from "./Input";
 import InputLabel from "./InputLabel";
@@ -24,7 +25,6 @@ import TablePagination from "./TablePagination";
 import Tabs from "./Tabs";
 import Timeline from "./Timeline";
 import Typography from "./Typography";
-import Grid from "./Grid";
 
 // ----------------------------------------------------------------------
 

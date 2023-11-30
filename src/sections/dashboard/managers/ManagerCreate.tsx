@@ -1,9 +1,9 @@
+import { faker } from "@faker-js/faker";
 import { Button } from "@mui/material";
 import { useState } from "react";
 
 import Iconify from "@/components/iconify";
 
-import { faker } from "@faker-js/faker";
 import { ManagerDialog } from ".";
 
 export default function ManagerCreate(): JSX.Element {

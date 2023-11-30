@@ -1,8 +1,13 @@
 import type { AxiosResponse } from "axios";
 
 import { request } from "@/lib/request";
-import { OrderFormValue } from "@/sections/dashboard/orders/OrderForm/OrderForm";
-import type { OrderPayload, OrderResponse, Response } from "@/types";
+import type { OrderFormValue } from "@/sections/dashboard/orders/order-form/OrderForm";
+import type {
+  OrderDriverPayload,
+  OrderPayload,
+  OrderResponse,
+  Response,
+} from "@/types";
 
 export const createOrderMutation = async (
   data: OrderFormValue
@@ -29,6 +34,19 @@ export const updateOrderMutation = async (
   });
 };
 
+export const updateOrderDriverMutation = async (
+  data: OrderDriverPayload,
+  id: string
+): Promise<AxiosResponse<Response<OrderResponse>, any> | undefined> => {
+  const transformOrderDriverData = transformOrderDriver(data);
+
+  return request({
+    url: `/orders/${id}`,
+    method: "PUT",
+    data: transformOrderDriverData,
+  });
+};
+
 export const deleteOrderMutation = async (
   id: string
 ): Promise<AxiosResponse<Response<OrderResponse>, any> | undefined> => {
@@ -48,6 +66,26 @@ const transformOrder = (value: OrderFormValue): OrderPayload => {
     shippingDistrict: value.shippingAddress.compound.district,
     shippingWard: value.shippingAddress.compound.commune,
     shippingAddress: value.shippingAddress.description,
+    lat: value.lat,
+    lng: value.lng,
+    expectedShippingDate: value.expectedShippingDate,
+    senderName: value.senderName,
+    senderPhoneNumber: value.senderPhoneNumber,
+    note: value.note || "",
+  };
+};
+
+const transformOrderDriver = (
+  value: OrderDriverPayload
+): Omit<OrderPayload, "ownerId"> => {
+  return {
+    driverId: value.driverId,
+    recipientName: value.recipientName,
+    recipientPhoneNumber: value.recipientPhoneNumber,
+    shippingProvince: value.shippingProvince,
+    shippingDistrict: value.shippingDistrict,
+    shippingWard: value.shippingWard,
+    shippingAddress: value.shippingAddress,
     lat: value.lat,
     lng: value.lng,
     expectedShippingDate: value.expectedShippingDate,

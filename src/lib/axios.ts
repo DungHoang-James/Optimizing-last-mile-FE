@@ -5,11 +5,10 @@ import type {
 } from "axios";
 import Axios from "axios";
 
-import { BASE_API_URL } from "@/config";
-import { Response } from "@/types";
-import storage from "@/utils/storage";
-
 import { openSnackbar } from "@/components/snackbar";
+import { BASE_API_URL } from "@/config";
+import type { Response } from "@/types";
+import storage from "@/utils/storage";
 
 export const axios = Axios.create({
   baseURL: BASE_API_URL,
