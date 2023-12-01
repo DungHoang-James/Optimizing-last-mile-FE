@@ -1,15 +1,17 @@
-export const ACTIVE = 0;
-export const INACTIVE = 1;
-export const NEW = 2;
-export const PENDING = 3;
-export const REJECT = 4;
+export enum STATUS_ENUM {
+  ACTIVE = 0,
+  INACTIVE = 1,
+  NEW = 2,
+  PENDING = 3,
+  REJECT = 4,
+}
 
 export const STATUS: Status = {
-  [ACTIVE]: { label: "Active", color: "success" },
-  [INACTIVE]: { label: "Inactive", color: "default" },
-  [NEW]: { label: "New", color: "primary" },
-  [PENDING]: { label: "Pending", color: "warning" },
-  [REJECT]: { label: "Reject", color: "error" },
+  [STATUS_ENUM.ACTIVE]: { label: "Active", color: "success" },
+  [STATUS_ENUM.INACTIVE]: { label: "Inactive", color: "default" },
+  [STATUS_ENUM.NEW]: { label: "New", color: "primary" },
+  [STATUS_ENUM.PENDING]: { label: "Pending", color: "warning" },
+  [STATUS_ENUM.REJECT]: { label: "Reject", color: "error" },
 };
 
 export const DELETE = 6;

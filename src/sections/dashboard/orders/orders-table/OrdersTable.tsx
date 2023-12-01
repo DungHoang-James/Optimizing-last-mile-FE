@@ -18,7 +18,8 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import { ListToolbarMemo } from "@/components/list-toolbar";
-import { useDebounce, useOrders } from "@/hooks";
+import type { FilterFormValue } from "@/components/list-toolbar/ListToolbar";
+import { useOrders } from "@/hooks";
 import { fetchWithGet } from "@/lib/request";
 import type {
   OrderResponse,
@@ -77,10 +78,11 @@ const TABLE_HEAD: TableHead[] = [
 
 export default function OrdersTable() {
   const [pagination, setPagination] = useState<StateNavigation>({
-    search: "",
     page: 0,
     pageSize: 10,
   });
+
+  const [filters, setFilters] = useState<FilterFormValue>();
 
   const {
     state: { selected },
@@ -91,13 +93,15 @@ export default function OrdersTable() {
 
   const navigate = useNavigate();
 
-  const debounceSearch = useDebounce(pagination.search, 800);
-
   const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: [
       "/orders",
       {
-        ...(debounceSearch && { search: debounceSearch }),
+        ...filters,
+        // ...(filters?.Status &&
+        //   Array.isArray(filters?.Status) &&
+        //   filters?.Status.length > 0 &&
+        //   filters?.Status.map((status) => ({ Status: status.id }))),
         page: pagination.page + 1,
         limit: pagination.pageSize,
       },
@@ -128,17 +132,15 @@ export default function OrdersTable() {
     setPagination((prev) => ({ ...prev, pageSize: +event.target.value }));
   };
 
-  const handleFilterByName = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setPagination((prev) => ({ ...prev, search: event.target.value }));
-    },
-    []
-  );
-
   const handleViewDetail = (id?: string) => {
     if (!id) return;
     navigate(`/dashboard/orders/${id}`);
   };
+
+  const handleFilters = useCallback((filter: FilterFormValue) => {
+    setFilters(filter);
+    setPagination((prev) => ({ ...prev, page: 0 }));
+  }, []);
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
@@ -156,10 +158,7 @@ export default function OrdersTable() {
   return (
     <Stack spacing={2}>
       <Card>
-        <ListToolbarMemo
-          filterName={pagination.search}
-          onFilterName={handleFilterByName}
-        />
+        <ListToolbarMemo handleFilters={handleFilters} />
       </Card>
       <Card>
         <OrderEnhancedTableToolbar />
@@ -241,9 +240,7 @@ export default function OrdersTable() {
                         </Typography>
 
                         <Typography variant="body2">
-                          No results found for &nbsp;
-                          <strong>&quot;{debounceSearch}&quot;</strong>.
-                          <br /> Try checking for typos or using complete words.
+                          Try checking for typos or using other filter.
                         </Typography>
                       </Paper>
                     </TableCell>

@@ -17,6 +17,9 @@ type Props = {
   disabled: boolean;
 };
 
+const ROLE_OWNER = 3;
+const ROLE_DRIVER = 2;
+
 export default function OrderInformation({ disabled }: Props) {
   const {
     register,
@@ -48,7 +51,7 @@ export default function OrderInformation({ disabled }: Props) {
               inputLabel={"Owner Name"}
               placeholder={"Enter Owner Name"}
               name={"ownerId"}
-              role={3}
+              role={ROLE_OWNER}
               required
               disabled={disabled}
             />
@@ -57,7 +60,7 @@ export default function OrderInformation({ disabled }: Props) {
             <OrderDropdown
               inputLabel={"Diver Name"}
               placeholder={"Enter Driver Name"}
-              role={2}
+              role={ROLE_DRIVER}
               name={"driverId"}
               disabled={disabled}
             />
