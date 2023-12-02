@@ -3,7 +3,7 @@ import type { MouseEvent } from "react";
 import { useState } from "react";
 
 import Iconify from "@/components/iconify";
-import { NEW, REJECT } from "@/utils/constants";
+import { STATUS_ENUM } from "@/utils/constants";
 
 import { DriverStatus } from ".";
 
@@ -34,7 +34,7 @@ export default function DriverAction({
     setOpen(null);
   };
 
-  const disabled = status === NEW || status === REJECT;
+  const disabled = status === STATUS_ENUM.NEW || status === STATUS_ENUM.REJECT;
 
   return (
     <Box>

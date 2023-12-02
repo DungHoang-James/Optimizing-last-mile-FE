@@ -15,14 +15,13 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import { ListHead } from "@/components/list-head";
-import { ListToolbar } from "@/components/list-toolbar";
 import { Status } from "@/components/status";
 import { useDebounce } from "@/hooks";
 import { fetchWithGet } from "@/lib/request";
 import type { Pagination, StateNavigation, TableHead } from "@/types";
 import type { DriverResponse } from "@/types/driver";
 
-import { DriverAction } from ".";
+import { DriverAction, DriverListToolbar } from ".";
 
 const TABLE_HEAD: TableHead[] = [
   { id: "id", label: "STT", align: "center" },
@@ -101,7 +100,7 @@ export default function DriverTable() {
 
   return (
     <>
-      <ListToolbar
+      <DriverListToolbar
         filterName={pagination.search}
         onFilterName={handleFilterByName}
       />

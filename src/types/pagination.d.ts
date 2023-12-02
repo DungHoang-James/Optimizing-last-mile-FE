@@ -9,6 +9,7 @@ export type Pagination<T> = {
 };
 
 export type StateNavigation = {
+  search?: string;
   page: number;
   pageSize: number;
 };
