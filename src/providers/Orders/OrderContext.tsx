@@ -12,6 +12,7 @@ export type TOrderContext = {
   state: TDefaultOrderValue;
   handleSelectAllClick: (
     event?: ChangeEvent<HTMLInputElement>,
+    checked?: boolean,
     data?: Pagination<OrderResponse>
   ) => void;
   handleClickCheckbox: (

@@ -15,6 +15,7 @@ import type { ReactElement, Ref } from "react";
 import { forwardRef, useCallback, useState } from "react";
 
 import { useOrders } from "@/hooks";
+import { queryClient } from "@/lib/react-query";
 import OrderDialogProvider from "@/providers/Orders/OrdersDialog/OrderDialogProvider";
 
 import OrderDriverDialogActions from "./OrderDriverDialogActions";
@@ -42,6 +43,9 @@ export default function OrderDriverDialog() {
   };
 
   const handleClose = useCallback(() => {
+    queryClient.refetchQueries({
+      queryKey: ["/orders", { page: 1, limit: 10 }],
+    });
     setOpen(false);
   }, []);
 

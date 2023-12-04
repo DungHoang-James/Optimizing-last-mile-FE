@@ -167,9 +167,18 @@ export default function OrdersTable() {
             <Table>
               <OrderTableListHead
                 headLabel={TABLE_HEAD}
-                onSelectAllClick={(event: ChangeEvent<HTMLInputElement>) =>
-                  handleSelectAllClick(event, data)
+                pageSize={pagination.pageSize}
+                total={
+                  data?.data.filter(
+                    (order) =>
+                      order.currentOrderStatus === 0 ||
+                      order.currentOrderStatus === 1
+                  ).length || 0
                 }
+                onSelectAllClick={(
+                  event: ChangeEvent<HTMLInputElement>,
+                  checked: boolean
+                ) => handleSelectAllClick(event, checked, data)}
               />
               <TableBody>
                 {data?.data.map((order, index) => (
@@ -188,6 +197,10 @@ export default function OrdersTable() {
                     <TableCell padding="checkbox">
                       <Checkbox
                         color="primary"
+                        disabled={
+                          order.currentOrderStatus !== 0 &&
+                          order.currentOrderStatus !== 1
+                        }
                         checked={isSelected(order.id)}
                         inputProps={{
                           "aria-labelledby": `enhanced-table-checkbox-${index}`,

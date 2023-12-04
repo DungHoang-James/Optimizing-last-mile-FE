@@ -34,8 +34,6 @@ export const fetchWithGet = <
 }): Promise<
   AxiosResponse<TBaseURL extends string ? T : Response<T>, any> | undefined
 > => {
-  console.log(removeNullUndefined(queryKey[1]));
-
   return request({
     method: "GET",
     params: removeNullUndefined(queryKey[1]),

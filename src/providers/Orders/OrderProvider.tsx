@@ -12,6 +12,7 @@ export default function OrderProvider({ children }: PropsWithChildren) {
   const handleSelectAllClick = useCallback(
     (
       event?: ChangeEvent<HTMLInputElement>,
+      checked?: boolean,
       data?: Pagination<OrderResponse>
     ) => {
       if (
@@ -20,7 +21,12 @@ export default function OrderProvider({ children }: PropsWithChildren) {
         data.data &&
         data?.data?.length > 0
       ) {
-        const newSelected = data.data.map((n) => n.id);
+        const newSelected = data.data
+          .filter(
+            (n) =>
+              n.id && (n.currentOrderStatus === 0 || n.currentOrderStatus === 1)
+          )
+          .map((item) => item.id);
         setSelected(newSelected);
         return;
       }
