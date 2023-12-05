@@ -2,6 +2,7 @@ import { AppBar, Box, IconButton, Stack, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import type { CSSProperties } from "react";
 
+import { useAuth } from "@/hooks";
 import { bgBlur } from "@/utils/cssStyles";
 
 import Iconify from "../../../../components/iconify";
@@ -36,6 +37,9 @@ type Props = {
 };
 
 export default function Header({ onOpenNav }: Props) {
+  const {
+    state: { role },
+  } = useAuth();
   return (
     <StyledRoot>
       <StyledToolbar>
@@ -53,16 +57,18 @@ export default function Header({ onOpenNav }: Props) {
         <Searchbar />
         <Box sx={{ flexGrow: 1 }} />
 
-        <Stack
-          direction="row"
-          alignItems="center"
-          spacing={{
-            xs: 0.5,
-            sm: 1,
-          }}
-        >
-          <NotificationsPopover />
-        </Stack>
+        {role === "MANAGER" && (
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={{
+              xs: 0.5,
+              sm: 1,
+            }}
+          >
+            <NotificationsPopover />
+          </Stack>
+        )}
       </StyledToolbar>
     </StyledRoot>
   );

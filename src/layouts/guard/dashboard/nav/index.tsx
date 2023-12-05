@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
 
-import account from "@/__mocks__/account";
 import { Avatar } from "@/components/avatar";
 import NavSection, { NavItem } from "@/components/nav-section";
 import { useAuth } from "@/hooks";
@@ -64,7 +63,7 @@ export default function Nav({ openNav, onCloseNav }: Props) {
       <Box sx={{ mb: 5, mx: 2.5, pt: 3 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
+            <Avatar src={"https://joesch.moe/api/v1/random"} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
                 {data?.displayName || ""}
