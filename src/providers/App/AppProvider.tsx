@@ -14,7 +14,6 @@ import { AuthProvider } from "../Auth/AuthProvider";
 declare module "notistack" {
   interface VariantOverrides {
     notification: true;
-    requestLogging: true;
   }
 }
 
