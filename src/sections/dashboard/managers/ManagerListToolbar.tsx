@@ -34,7 +34,7 @@ const StyledSearch = styled(OutlinedInput)(({ theme }) => ({
 }));
 
 type Props = {
-  filterName: string;
+  filterName?: string;
   onFilterName: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;

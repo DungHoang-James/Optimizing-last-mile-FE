@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 import Iconify from "@/components/iconify";
-import useNotification from "@/hooks/useNotification";
+import { useNotification } from "@/hooks/useNotification";
 import { queryClient } from "@/lib/react-query";
 import { fetchWithGet } from "@/lib/request";
 import { updateNotificationMutation } from "@/mutations/notification";

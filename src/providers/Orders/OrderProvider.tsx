@@ -12,7 +12,7 @@ export default function OrderProvider({ children }: PropsWithChildren) {
   const handleSelectAllClick = useCallback(
     (
       event?: ChangeEvent<HTMLInputElement>,
-      checked?: boolean,
+      _?: boolean,
       data?: Pagination<OrderResponse>
     ) => {
       if (

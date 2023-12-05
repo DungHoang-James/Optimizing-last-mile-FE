@@ -1,10 +1,11 @@
 import type { ListItemButtonProps } from "@mui/material";
 import { ListItemButton, ListItemIcon } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import type { NavLinkProps } from "react-router-dom";
 
-export const StyledNavItem = styled((props: ListItemButtonProps) => (
-  <ListItemButton {...props} />
-))(({ theme }) => ({
+export const StyledNavItem = styled(
+  (props: ListItemButtonProps & NavLinkProps) => <ListItemButton {...props} />
+)(({ theme }) => ({
   ...theme.typography.body2,
   height: 48,
   position: "relative",

@@ -1,3 +1,13 @@
+### Techstack
+
+- React
+- React Router DOM
+- React-query
+- Zustand
+- Material UI
+- React Hook Form
+- Yup
+
 ### Prerequisite
 
 - Nodejs (Latest LTS version)
