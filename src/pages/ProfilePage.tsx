@@ -3,7 +3,6 @@ import { Card, CardContent, Container, Stack, Typography } from "@mui/material";
 import { useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { useMutation, useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 
 import { Loading } from "@/components/loading";
 import { useAuth } from "@/hooks";
@@ -14,7 +13,6 @@ import type { ProfileFormValue } from "@/sections/dashboard/profile/ProfileForm"
 import type { AccountResponse } from "@/types";
 
 export default function ProfilePage() {
-  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement | null>(null);
   const { state } = useAuth();
 

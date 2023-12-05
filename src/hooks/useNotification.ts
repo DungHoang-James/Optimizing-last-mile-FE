@@ -10,7 +10,7 @@ import type { Notification } from "@/types";
 
 let connection: HubConnection;
 
-export default function useNotification(connect: boolean) {
+export function useNotification(connect: boolean) {
   const notification = useNotificationStore();
   const { enqueueSnackbar } = useSnackbar();
 

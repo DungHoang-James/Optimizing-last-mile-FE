@@ -4,12 +4,10 @@ import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import type { MutableRefObject } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import type { InferType } from "yup";
 import { object, string } from "yup";
 
 import Form from "@/components/form";
-import { useAuth } from "@/hooks";
 
 export type ProfileFormValue = InferType<typeof profileFormSchema>;
 
@@ -41,9 +39,6 @@ export default function ProfileForm({
   defaultValues,
   onSubmit,
 }: Props): JSX.Element {
-  const { state } = useAuth();
-
-  const navigate = useNavigate();
   const { control, handleSubmit } = useForm<ProfileFormValue>({
     defaultValues: defaultValues,
     resolver: yupResolver(profileFormSchema),

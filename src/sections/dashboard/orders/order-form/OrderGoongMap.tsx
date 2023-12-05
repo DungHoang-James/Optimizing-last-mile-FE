@@ -2,7 +2,6 @@ import "@goongmaps/goong-js/dist/goong-js.css";
 
 // @ts-expect-error: Library not support Typescript.
 import * as GoongJS from "@goongmaps/goong-js";
-import type { InteractiveMapProps } from "@goongmaps/goong-map-react/src/components/interactive-map";
 import { useEffect, useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import { useQuery } from "react-query";
@@ -11,7 +10,7 @@ import { GOONG_API_KEY, GOONG_API_URL, GOONG_MAP_KEY } from "@/config";
 import { fetchWithGet } from "@/lib/request";
 import type { GoongPlaceDetailResponse, Prediction } from "@/types";
 
-export default function OrderGoongMap({}: InteractiveMapProps) {
+export default function OrderGoongMap() {
   const markers = useRef(null);
   const mapRef = useRef(null);
   const { watch, setValue } = useFormContext();
