@@ -4,8 +4,8 @@ import type {
   InternalAxiosRequestConfig,
 } from "axios";
 import Axios from "axios";
+import { enqueueSnackbar } from "notistack";
 
-import { openSnackbar } from "@/components/snackbar";
 import { BASE_API_URL } from "@/config";
 import type { Response } from "@/types";
 import storage from "@/utils/storage";
@@ -37,7 +37,8 @@ axios.interceptors.response.use(
 
     if (
       successResponse.config.method !== "get" &&
-      successResponse.config.url !== "/auth/login/username"
+      successResponse.config.url !== "/auth/login/username" &&
+      !successResponse.config.url?.includes("/notifications")
     ) {
       let successMessage = null;
 
@@ -56,11 +57,13 @@ axios.interceptors.response.use(
           break;
       }
 
-      openSnackbar({
-        autoHideDuration: 6000,
-        errorMessage: successMessage,
-        severity: "success",
-      });
+      enqueueSnackbar({ variant: "success", message: successMessage });
+
+      //   openSnackbar({
+      //     autoHideDuration: 6000,
+      //     errorMessage: successMessage,
+      //     severity: "success",
+      //   });
     }
 
     return response;
@@ -71,11 +74,12 @@ axios.interceptors.response.use(
       errorReponse.response?.data?.errorMessage || errorReponse.message;
 
     if (errorReponse.code !== "ERR_CANCELED") {
-      openSnackbar({
-        autoHideDuration: 6000,
-        errorMessage,
-        severity: "error",
-      });
+      enqueueSnackbar({ variant: "error", message: errorMessage });
+      //   openSnackbar({
+      //     autoHideDuration: 6000,
+      //     errorMessage,
+      //     severity: "error",
+      //   });
     }
 
     // useNotificationStore.getState().addNotification({

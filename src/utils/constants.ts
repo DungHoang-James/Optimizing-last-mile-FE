@@ -14,4 +14,10 @@ export const STATUS: Status = {
   [STATUS_ENUM.REJECT]: { label: "Reject", color: "error" },
 };
 
+export enum NOTIFICATION_ENUM {
+  DELIVERY_ORDER_SUCCESSFUL = 0,
+  ASSIGNED_ORDER = 1,
+  NEW_DRIVER_REGISTRATION = 2,
+}
+
 export const DELETE = 6;

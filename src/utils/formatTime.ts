@@ -21,6 +21,6 @@ export function fTimestamp(date: string) {
   return date ? dayjs(new Date(date)).unix() : "";
 }
 
-export function fToNow(date: dayjs.Dayjs) {
+export function fToNow(date: string) {
   return date ? dayjs(date).toNow() : "";
 }

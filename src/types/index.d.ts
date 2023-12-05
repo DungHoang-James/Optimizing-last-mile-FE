@@ -11,3 +11,4 @@ export * from "./table";
 export * from "./status";
 export * from "./prediction";
 export * from "./order";
+export * from "./notification";

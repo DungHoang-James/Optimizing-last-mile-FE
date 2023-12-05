@@ -42,6 +42,7 @@ export const SnackbarHost: FC = () => {
       autoHideDuration={3500}
       {...snackbarStore.props}
       open={snackbarStore.open}
+      //   open={true}
       onClose={handleClose}
       key={snackbarStore.key}
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}

@@ -1,6 +1,5 @@
-import { LinearProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import ScrollToTop from "@/components/scroll-to-top/ScrollToTop";
@@ -69,12 +68,16 @@ export default function DashboardLayout(): JSX.Element {
     });
   }, [state.isAuthenticated, state.role, currentPath]);
 
+  const handleToggleNav = useCallback(() => {
+    setOpen((prev) => !prev);
+  }, []);
+
   if (state.loading || !state.isAuthenticated)
     return <Navigate to={"/login"} />;
   return (
     <StyledRoot>
-      <Header onOpenNav={() => setOpen(true)} />
-      <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+      <Header onOpenNav={handleToggleNav} />
+      <Nav openNav={open} onCloseNav={handleToggleNav} />
       <Main>
         <ScrollToTop />
         <Outlet />

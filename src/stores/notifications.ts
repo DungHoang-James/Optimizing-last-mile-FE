@@ -1,33 +1,21 @@
-import { randomUUID } from "crypto";
+import { create } from "zustand";
 
-import create from "zustand";
-
-export type Notification = {
-  id: string;
-  type: "info" | "warning" | "success" | "error";
-  title: string;
-  message?: string;
-};
+import type { Notification } from "@/types";
 
 type NotificationsStore = {
-  notifications: Notification[];
-  addNotification: (notification: Omit<Notification, "id">) => void;
-  dismissNotification: (id: string) => void;
+  notification: Notification | null;
+  addNotification: (notification: Notification) => void;
+  dismissNotification: () => void;
 };
 
 export const useNotificationStore = create<NotificationsStore>((set) => ({
-  notifications: [],
-  addNotification: (notification) =>
-    set((state) => ({
-      notifications: [
-        ...state.notifications,
-        { id: randomUUID(), ...notification },
-      ],
+  notification: null,
+  addNotification: (_notification) =>
+    set(() => ({
+      notification: { ..._notification },
     })),
-  dismissNotification: (id) =>
-    set((state) => ({
-      notifications: state.notifications.filter(
-        (notification) => notification.id !== id
-      ),
+  dismissNotification: () =>
+    set(() => ({
+      notification: null,
     })),
 }));

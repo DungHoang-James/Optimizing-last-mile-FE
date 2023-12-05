@@ -1,1 +1,1 @@
-export { SnackbarHost, openSnackbar } from "./SnackbarHost";
+export { SnackbarHost, openSnackbar } from "./Snackbar";
