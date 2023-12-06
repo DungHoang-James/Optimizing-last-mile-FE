@@ -6,6 +6,16 @@ export enum STATUS_ENUM {
   REJECT = 4,
 }
 
+export enum ORDER_STATUS_ENUM {
+  CREATED = 0,
+  PROCESSING = 1,
+  PICK_OFF = 2,
+  SHIPPING = 3,
+  DELIVERED = 4,
+  DELIVERY_FAILED = 5,
+  DELETED = 6,
+}
+
 export const STATUS: Status = {
   [STATUS_ENUM.ACTIVE]: { label: "Active", color: "success" },
   [STATUS_ENUM.INACTIVE]: { label: "Inactive", color: "default" },

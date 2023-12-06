@@ -1,13 +1,13 @@
 import {
   Autocomplete,
   Button,
+  Chip,
   InputAdornment,
   InputLabel,
   OutlinedInput,
   Stack,
   TextField,
   Toolbar,
-  Chip,
 } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -16,7 +16,7 @@ import { memo } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import Iconify from "@/components/iconify";
-import { STATUS_ENUM } from "@/utils/constants";
+import { ORDER_STATUS_ENUM } from "@/utils/constants";
 
 import Form from "../form";
 
@@ -48,7 +48,7 @@ type Props = {
 };
 
 type Options = {
-  id: STATUS_ENUM;
+  id: ORDER_STATUS_ENUM;
   label: string;
 };
 
@@ -60,15 +60,17 @@ export type FilterFormValue = {
 };
 
 const options: Options[] = [
-  { id: STATUS_ENUM.ACTIVE, label: "Active" },
-  { id: STATUS_ENUM.INACTIVE, label: "Inactive" },
-  { id: STATUS_ENUM.NEW, label: "New" },
-  { id: STATUS_ENUM.PENDING, label: "Pending" },
-  { id: STATUS_ENUM.REJECT, label: "Reject" },
+  { id: ORDER_STATUS_ENUM.CREATED, label: "Created" },
+  { id: ORDER_STATUS_ENUM.PROCESSING, label: "Processing" },
+  { id: ORDER_STATUS_ENUM.PICK_OFF, label: "Pick off" },
+  { id: ORDER_STATUS_ENUM.SHIPPING, label: "Shipping" },
+  { id: ORDER_STATUS_ENUM.DELIVERED, label: "Delivered" },
+  { id: ORDER_STATUS_ENUM.DELIVERY_FAILED, label: "Delivery failed" },
+  { id: ORDER_STATUS_ENUM.DELETED, label: "Deleted" },
 ];
 
 export default function ListToolbar({ handleFilters }: Props) {
-  const { control, handleSubmit, reset } = useForm<FilterFormValue>({
+  const { control, handleSubmit } = useForm<FilterFormValue>({
     defaultValues: {
       SearchName: undefined,
       StartDate: null,
@@ -82,10 +84,6 @@ export default function ListToolbar({ handleFilters }: Props) {
 
   const onSubmit = (data: FilterFormValue) => {
     handleFilters(data);
-  };
-
-  const handleReset = () => {
-    reset();
   };
 
   return (
@@ -197,16 +195,6 @@ export default function ListToolbar({ handleFilters }: Props) {
               )}
             />
           </Stack>
-          <Button
-            variant={"outlined"}
-            color={"error"}
-            sx={{
-              height: 40,
-            }}
-            onClick={handleReset}
-          >
-            Reset
-          </Button>
           <Button
             type={"submit"}
             variant={"outlined"}

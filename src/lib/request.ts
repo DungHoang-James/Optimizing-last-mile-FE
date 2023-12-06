@@ -6,7 +6,7 @@ import type {
 } from "axios";
 
 import type { Response } from "@/types";
-import { removeNullUndefined } from "@/utils/helper";
+import { convertSearchParams, removeNullUndefined } from "@/utils/helper";
 
 import { axios } from "./axios";
 
@@ -34,9 +34,12 @@ export const fetchWithGet = <
 }): Promise<
   AxiosResponse<TBaseURL extends string ? T : Response<T>, any> | undefined
 > => {
+  const resultNorNullUndefined = removeNullUndefined(queryKey[1]);
+  const params = convertSearchParams(resultNorNullUndefined);
+
   return request({
     method: "GET",
-    params: removeNullUndefined(queryKey[1]),
+    params: params,
     url: queryKey[0],
     signal,
     baseURL,

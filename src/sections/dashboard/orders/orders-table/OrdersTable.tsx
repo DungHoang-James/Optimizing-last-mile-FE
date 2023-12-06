@@ -98,10 +98,11 @@ export default function OrdersTable() {
       "/orders",
       {
         ...filters,
-        // ...(filters?.Status &&
-        //   Array.isArray(filters?.Status) &&
-        //   filters?.Status.length > 0 &&
-        //   filters?.Status.map((status) => ({ Status: status.id }))),
+        ...(filters?.Status &&
+          Array.isArray(filters?.Status) &&
+          filters?.Status.length > 0 && {
+            Status: filters.Status.map((status) => status.id),
+          }),
         page: pagination.page + 1,
         limit: pagination.pageSize,
       },

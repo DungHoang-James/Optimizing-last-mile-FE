@@ -17,7 +17,7 @@ export default function OrderCreate() {
         startIcon={<Iconify icon="eva:plus-fill" />}
         onClick={handleCreate}
       >
-        New Manager
+        New Order
       </Button>
     </>
   );
