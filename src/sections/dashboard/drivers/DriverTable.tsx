@@ -25,7 +25,7 @@ import { DriverAction, DriverListToolbar } from ".";
 
 const TABLE_HEAD: TableHead[] = [
   { id: "id", label: "STT", align: "center" },
-  { id: "username", label: "Username", align: "center" },
+  { id: "name", label: "Name", align: "center" },
   { id: "email", label: "Email", align: "center" },
   { id: "phoneContact", label: "Phone Number", align: "center" },
   { id: "status", label: "Status", align: "center" },
@@ -120,7 +120,9 @@ export default function DriverTable() {
                   onClick={() => handleViewDetail(driver.id)}
                 >
                   <TableCell align="left">{driver.id}</TableCell>
-                  <TableCell align="left">{driver.username}</TableCell>
+                  <TableCell align="left">
+                    {driver.driverProfile?.name}
+                  </TableCell>
                   <TableCell align="left">{driver.email || "N/A"}</TableCell>
                   <TableCell align="left">
                     {driver.phoneNumber || "N/A"}
@@ -172,7 +174,7 @@ export default function DriverTable() {
         )}
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[5, 10, 20]}
         component="div"
         count={data?.data.result?.totalCount || -1}
         rowsPerPage={pagination.pageSize}

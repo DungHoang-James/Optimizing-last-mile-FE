@@ -9,14 +9,14 @@ import type { NavConfig } from "@/types/NavConfig";
 
 const navConfig: NavConfig[] = [
   {
-    title: "Managers",
-    path: "/dashboard/managers",
-    icon: <SupervisedUserCircleIcon />,
-  },
-  {
     title: "Profile",
     path: "/dashboard/profile",
     icon: <PersonIcon />,
+  },
+  {
+    title: "Managers",
+    path: "/dashboard/managers",
+    icon: <SupervisedUserCircleIcon />,
   },
   {
     title: "Setting",
@@ -27,6 +27,11 @@ const navConfig: NavConfig[] = [
 
 const managerNavConfig: NavConfig[] = [
   {
+    title: "Profile",
+    path: "/dashboard/manager-profile",
+    icon: <PersonIcon />,
+  },
+  {
     title: "Drivers",
     path: "/dashboard/drivers",
     icon: <MopedIcon />,
@@ -35,11 +40,6 @@ const managerNavConfig: NavConfig[] = [
     title: "Orders",
     path: "/dashboard/orders",
     icon: <ReceiptLongIcon />,
-  },
-  {
-    title: "Profile",
-    path: "/dashboard/profile",
-    icon: <PersonIcon />,
   },
 ];
 const logoutNav: NavConfig = {

@@ -1,3 +1,23 @@
+export type RecordState = {
+  no: number;
+  order: {
+    ownerId: string;
+    driverId: string;
+    senderName: string;
+    senderPhoneNumber: string;
+    recipientName: string;
+    recipientPhoneNumber: string;
+    expectedShippingDate: string;
+    note: string;
+    shippingAddress: string;
+    shippingProvince?: string;
+    shippingDistrict?: string;
+    shippingWard?: string;
+    lat?: number;
+    lng?: number;
+  };
+};
+
 export type OrderPayload = {
   ownerId: number;
   driverId?: number;
@@ -76,4 +96,34 @@ export type OrderDriverPayload = {
   senderName: string;
   senderPhoneNumber: string;
   note: string | null;
+};
+
+export type OrderBatchPayload = {
+  no: number;
+  order: {
+    ownerId: number;
+    driverId: number;
+    recipientName: string;
+    recipientPhoneNumber: string;
+    shippingProvince: string;
+    shippingDistrict: string;
+    shippingWard: string;
+    shippingAddress: string;
+    lat: number;
+    lng: number;
+    expectedShippingDate: string;
+    senderName: string;
+    senderPhoneNumber: string;
+    note: string;
+  };
+};
+
+export type OrderBatchResponse = {
+  no: number;
+  orderId: string | null;
+  isSuccess: boolean;
+  error: {
+    errorCode: string | null;
+    errorMessage: string | null;
+  };
 };

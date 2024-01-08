@@ -109,7 +109,19 @@ export default function OrdersTable() {
     ],
     queryFn: ({ queryKey, signal }) =>
       fetchWithGet<Pagination<OrderResponse>>({ queryKey, signal }),
-    select: (data) => data?.data.result,
+    select: (data) => {
+      if (
+        filters?.Status &&
+        Array.isArray(filters?.Status) &&
+        filters?.Status.length > 0
+      ) {
+        data?.data.result?.data?.sort(
+          (a, b) => a.currentOrderStatus - b.currentOrderStatus
+        );
+      }
+
+      return data?.data.result;
+    },
   });
 
   const handleRefetch = () => {
@@ -144,15 +156,6 @@ export default function OrdersTable() {
   }, []);
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
-
-  const emptyRows =
-    pagination.page > 0
-      ? Math.max(
-          0,
-          (1 + pagination.page) * pagination.pageSize -
-            (data?.totalCount as number)
-        )
-      : 0;
 
   const isNotFound = data?.totalCount === 0;
 
@@ -234,11 +237,6 @@ export default function OrdersTable() {
                     </TableCell>
                   </TableRow>
                 ))}
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
               </TableBody>
               {isNotFound && (
                 <TableBody>
@@ -267,7 +265,7 @@ export default function OrdersTable() {
           )}
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10, 20]}
           component="div"
           count={data?.totalCount || -1}
           rowsPerPage={pagination.pageSize}

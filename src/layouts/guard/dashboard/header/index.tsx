@@ -8,7 +8,6 @@ import { bgBlur } from "@/utils/cssStyles";
 import Iconify from "../../../../components/iconify";
 
 import NotificationsPopover from "./NotificationsPopover";
-import Searchbar from "./Searchbar";
 
 const NAV_WIDTH = 280;
 
@@ -54,7 +53,6 @@ export default function Header({ onOpenNav }: Props) {
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
 
-        <Searchbar />
         <Box sx={{ flexGrow: 1 }} />
 
         {role === "MANAGER" && (

@@ -14,7 +14,7 @@ export default function ManagerCreate(): JSX.Element {
   };
 
   const defaultValues = {
-    username: "",
+    email: "",
     password: faker.internet.password(),
     name: "",
     birthDay: null as unknown as Date,

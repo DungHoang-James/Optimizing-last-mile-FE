@@ -46,12 +46,16 @@ export default function DashboardLayout(): JSX.Element {
   const { state } = useAuth();
 
   const currentPath = useCurrentPath(
-    state.role === "ADMIN" ? ADMIN_ROUTES : MANAGER_ROUTES,
+    ADMIN_ROUTES.concat(MANAGER_ROUTES),
     location
   );
 
   useEffect(() => {
-    if (!currentPath) return;
+    if (!currentPath) {
+      return state.role === "ADMIN"
+        ? navigate(ADMIN_PATH[0], { replace: true })
+        : navigate(MANAGER_PATH[0], { replace: true });
+    }
     const isValidPath =
       state.role === "ADMIN"
         ? ADMIN_PATH.includes(currentPath)

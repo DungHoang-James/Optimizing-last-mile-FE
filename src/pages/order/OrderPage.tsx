@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 import OrderProvider from "@/providers/Orders/OrderProvider";
 import { OrderCreate, OrdersTable } from "@/sections/dashboard/orders";
+import OrderUploadFile from "@/sections/dashboard/orders/oder-upload-file/OrderUploadFile";
 
 export default function OrderPage() {
   return (
@@ -20,7 +21,10 @@ export default function OrderPage() {
           <Typography variant="h4" gutterBottom>
             Orders
           </Typography>
-          <OrderCreate />
+          <Stack direction={"row"} spacing={2}>
+            <OrderUploadFile />
+            <OrderCreate />
+          </Stack>
         </Stack>
         <OrderProvider>
           <OrdersTable />

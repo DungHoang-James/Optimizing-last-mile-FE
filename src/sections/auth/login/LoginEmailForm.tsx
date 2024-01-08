@@ -2,51 +2,49 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
 import {
   FormHelperText,
-  IconButton,
   InputAdornment,
   Stack,
   TextField,
+  IconButton,
 } from "@mui/material";
 import type { AxiosError } from "axios";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import type { InferType } from "yup";
 import { object, string } from "yup";
 
 import Form from "@/components/form";
 import Iconify from "@/components/iconify";
 import { useAuth } from "@/hooks";
-import { loginMutation } from "@/mutations/auth";
+import { loginEmailMutation } from "@/mutations/auth";
 import { Types } from "@/providers/Auth/AuthContext";
 
-type FormValues = {
-  username: string;
-  password: string;
-};
+export type LoginWithEmailForm = InferType<typeof loginForm>;
 
-const loginWithUsernameSchema = object({
-  username: string().required("Username is required"),
+const loginForm = object({
+  email: string().email("Invalid Email").required("Email is required"),
   password: string().required("Password is required"),
 });
 
-export default function LoginForm(): JSX.Element {
-  const { mutate, isLoading } = useMutation(loginMutation);
-  const { control, handleSubmit } = useForm<FormValues>({
+export default function LoginEmailForm() {
+  const { mutate, isLoading } = useMutation(loginEmailMutation);
+  const { control, handleSubmit } = useForm<LoginWithEmailForm>({
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
-    resolver: yupResolver(loginWithUsernameSchema),
+    resolver: yupResolver(loginForm),
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
   const { dispatch } = useAuth();
 
-  const onSubmit = ({ username, password }: FormValues) => {
+  const onSubmit = ({ email, password }: LoginWithEmailForm) => {
     mutate(
       {
-        username,
+        email,
         password,
       },
       {
@@ -71,16 +69,17 @@ export default function LoginForm(): JSX.Element {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2}>
         <Controller
-          name="username"
+          name="email"
           control={control}
           render={({ field, fieldState }) => (
             <TextField
               {...field}
+              type={"email"}
               error={Boolean(fieldState.error)}
               helperText={
                 Boolean(fieldState.error) && fieldState.error?.message
               }
-              label="Username"
+              label="Email"
               disabled={isLoading}
             />
           )}

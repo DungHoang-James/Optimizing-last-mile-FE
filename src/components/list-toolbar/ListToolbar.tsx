@@ -177,6 +177,7 @@ export default function ListToolbar({ handleFilters }: Props) {
                   multiple
                   size={"small"}
                   id="order-status"
+                  placeholder="Status"
                   options={options}
                   getOptionLabel={(option) => option.label}
                   onChange={(_, value) => {
@@ -187,7 +188,6 @@ export default function ListToolbar({ handleFilters }: Props) {
                       {...field}
                       {...params}
                       label="Status"
-                      placeholder="Status"
                       fullWidth
                     />
                   )}

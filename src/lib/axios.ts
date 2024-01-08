@@ -38,7 +38,8 @@ axios.interceptors.response.use(
     if (
       successResponse.config.method !== "get" &&
       successResponse.config.url !== "/auth/login/username" &&
-      !successResponse.config.url?.includes("/notifications")
+      !successResponse.config.url?.includes("/notifications") &&
+      !successResponse.config.url?.includes("/orders/batch")
     ) {
       let successMessage = null;
 

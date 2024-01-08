@@ -2,7 +2,7 @@ import type { Dayjs } from "dayjs";
 
 export type Managers = {
   id: number;
-  username: string;
+  email: string;
   name: string;
   birthDay: string | Dayjs;
   province: string;
@@ -17,7 +17,4 @@ export type Manager = Omit<Managers, "password">;
 
 export type CreateManagerPayload = Omit<Managers, "id" | "status">;
 
-export type UpdateManagerPayload = Omit<
-  CreateManagerPayload,
-  "password" | "username"
->;
+export type UpdateManagerPayload = Omit<CreateManagerPayload, "password">;

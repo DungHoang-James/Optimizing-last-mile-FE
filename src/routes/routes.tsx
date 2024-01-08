@@ -7,17 +7,19 @@ export const ROUTES_PATH: { [key: string]: string } = {
   "/dashboard": "dashboard",
   "/dashboard/managers": "managers",
   "/dashboard/profile": "profile",
+  "/dashboard/manager-profile": "manager-profile",
   "/dashboard/orders": "orders",
   "/dashboard/drivers": "Driver",
   "/404": "not_found",
 };
 
 export const ADMIN_PATH = [
-  "/dashboard/managers",
   "/dashboard/profile",
+  "/dashboard/managers",
   "/dashboard/setting",
 ];
 export const MANAGER_PATH = [
+  "/dashboard/manager-profile",
   "/dashboard/drivers",
   "/dashboard/drivers/:id",
   "/dashboard/orders",
@@ -28,7 +30,6 @@ export const MANAGER_PATH = [
 export const ADMIN_ROUTES: RouteObject[] = [
   {
     path: "/dashboard/managers",
-    index: true,
     async lazy() {
       const { default: ManagersPage } = await import("../pages/ManagersPage");
       return { Component: ManagersPage };
@@ -36,7 +37,6 @@ export const ADMIN_ROUTES: RouteObject[] = [
   },
   {
     path: "/dashboard/profile",
-    index: true,
     async lazy() {
       const { default: ProfilePage } = await import("../pages/ProfilePage");
       return { Component: ProfilePage };
@@ -44,7 +44,6 @@ export const ADMIN_ROUTES: RouteObject[] = [
   },
   {
     path: "/dashboard/setting",
-    index: true,
     async lazy() {
       const { default: SettingPage } = await import("../pages/SettingPage");
       return { Component: SettingPage };
@@ -53,6 +52,15 @@ export const ADMIN_ROUTES: RouteObject[] = [
 ];
 
 export const MANAGER_ROUTES: RouteObject[] = [
+  {
+    path: "/dashboard/manager-profile",
+    async lazy() {
+      const { default: ManagerProfilePage } = await import(
+        "../pages/ManagerProfilePage"
+      );
+      return { Component: ManagerProfilePage };
+    },
+  },
   {
     path: "/dashboard/orders",
     async lazy() {

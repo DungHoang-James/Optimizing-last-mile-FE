@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Loading } from "@/components/loading";
 import { fetchWithGet } from "@/lib/request";
 import { OrderForm } from "@/sections/dashboard/orders";
+import OrderDetailsTitle from "@/sections/dashboard/orders/orders-table/OrderDetailsTitle";
 import type { OrderDetailResponse } from "@/types";
 
 export default function OrderEditPage() {
@@ -55,16 +56,7 @@ export default function OrderEditPage() {
         <title>Order - {params.id}</title>
       </Helmet>
       <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={2}
-        >
-          <Typography variant="h4" gutterBottom>
-            Update Order
-          </Typography>
-        </Stack>
+        <OrderDetailsTitle />
         <OrderForm id={params.id} status={"update"} defaultValues={data} />
       </Container>
     </>

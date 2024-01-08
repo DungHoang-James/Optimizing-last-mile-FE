@@ -35,6 +35,7 @@ const StyledStack = styled(Stack)(() => ({
 }));
 
 export type ManagerFormValues = {
+  email: string;
   username: string;
   password: string;
   name: string;
@@ -47,9 +48,10 @@ export type ManagerFormValues = {
 };
 
 const managerSchemaCreate = object({
-  username: string()
-    .max(50, "Username cannot be greater than 50 characters")
-    .required("Username is required"),
+  email: string()
+    .max(50, "Email cannot be greater than 50 characters")
+    .email("Invalid email")
+    .required("Email is required"),
   password: string()
     .max(50, "Password cannot be greater than 50 characters")
     .required("Password is required"),
@@ -167,15 +169,15 @@ export default function ManagerForm({
             {status === "create" && (
               <>
                 <StyledStack spacing={1}>
-                  <InputLabel required>Username</InputLabel>
+                  <InputLabel required>Email</InputLabel>
                   <Controller
-                    name={"username"}
+                    name={"email"}
                     control={control}
                     render={({ field, fieldState }) => (
                       <TextField
                         {...field}
-                        type={"text"}
-                        placeholder={"Enter username"}
+                        type={"email"}
+                        placeholder={"Enter email"}
                         error={Boolean(fieldState.error)}
                         helperText={
                           Boolean(fieldState.error) && fieldState.error?.message

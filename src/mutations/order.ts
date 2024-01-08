@@ -3,9 +3,11 @@ import type { AxiosResponse } from "axios";
 import { request } from "@/lib/request";
 import type { OrderFormValue } from "@/sections/dashboard/orders/order-form/OrderForm";
 import type {
+  OrderBatchResponse,
   OrderDriverPayload,
   OrderPayload,
   OrderResponse,
+  RecordState,
   Response,
 } from "@/types";
 
@@ -53,6 +55,16 @@ export const deleteOrderMutation = async (
   return request({
     url: `/orders/${id}`,
     method: "DELETE",
+  });
+};
+
+export const batchOrderMutation = async (
+  data: RecordState[]
+): Promise<AxiosResponse<Response<OrderBatchResponse[]>, any> | undefined> => {
+  return request({
+    url: "/orders/batch",
+    method: "POST",
+    data,
   });
 };
 

@@ -22,3 +22,5 @@ export const convertSearchParams = (params: any) => {
 
   return urlParams;
 };
+
+export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

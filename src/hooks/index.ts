@@ -6,3 +6,4 @@ export * from "./useCurrentPath";
 export * from "./useOrders";
 export * from "./useOrderDialog";
 export * from "./useNotification";
+export * from "./useCopyToClipboard";

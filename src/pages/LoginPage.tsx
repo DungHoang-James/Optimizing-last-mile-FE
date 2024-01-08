@@ -2,9 +2,9 @@ import { Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Helmet } from "react-helmet-async";
 
-import Logo from "../components/logo";
-import useResponsive from "../hooks/useResponsive";
-import { LoginForm } from "../sections/auth/login";
+import Logo from "@/components/logo";
+import useResponsive from "@/hooks/useResponsive";
+import { LoginWrapper } from "@/sections/auth/login";
 
 // ----------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ export default function LoginPage() {
             <Typography variant="h4" gutterBottom>
               Sign in
             </Typography>
-            <LoginForm />
+            <LoginWrapper />
           </StyledContent>
         </Container>
       </StyledRoot>

@@ -130,7 +130,7 @@ export default function ManagersTable() {
                       </Typography>
                     </Stack>
                   </TableCell>
-                  <TableCell align="left">{manager.username}</TableCell>
+                  <TableCell align="left">{manager.name}</TableCell>
                   <TableCell align="left">{manager.phoneContact}</TableCell>
                   <TableCell align="left">
                     {fDate(manager.birthDay as string)}
@@ -189,7 +189,7 @@ export default function ManagersTable() {
         )}
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[5, 10, 20]}
         component="div"
         count={data?.data.result?.totalCount || -1}
         rowsPerPage={pagination.pageSize}
