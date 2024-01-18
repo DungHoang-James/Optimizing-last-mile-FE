@@ -165,7 +165,7 @@ export default function OrderInformation({ disabled }: Props) {
             disabled={disabled}
             multiline
             type={"text"}
-            placeholder={"Enter username"}
+            placeholder={"Enter Note"}
             rows={4}
             defaultValue={getValues("note")}
             {...register("note")}

@@ -79,7 +79,7 @@ export default function ManagersTable() {
   ) => {
     setPagination({
       search: event.target.value,
-      page: 1,
+      page: 0,
       pageSize: +event.target.value,
     });
   };

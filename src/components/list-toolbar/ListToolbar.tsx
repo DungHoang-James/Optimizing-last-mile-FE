@@ -53,6 +53,7 @@ type Options = {
 };
 
 export type FilterFormValue = {
+  searchOrderId: string | null;
   SearchName: string | null;
   StartDate: string | null;
   EndDate: string | null;
@@ -72,6 +73,7 @@ const options: Options[] = [
 export default function ListToolbar({ handleFilters }: Props) {
   const { control, handleSubmit } = useForm<FilterFormValue>({
     defaultValues: {
+      searchOrderId: undefined,
       SearchName: undefined,
       StartDate: null,
       EndDate: null,
@@ -93,13 +95,13 @@ export default function ListToolbar({ handleFilters }: Props) {
           <Stack spacing={1}>
             <InputLabel>Search:</InputLabel>
             <Controller
-              name={"SearchName"}
+              name={"searchOrderId"}
               control={control}
               render={({ field }) => (
                 <StyledSearch
                   {...field}
                   size={"small"}
-                  placeholder="Search name..."
+                  placeholder="Search Order ID..."
                   startAdornment={
                     <InputAdornment position="start">
                       <Iconify

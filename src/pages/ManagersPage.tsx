@@ -15,7 +15,7 @@ export default function ManagersPage(): JSX.Element {
           direction="row"
           alignItems="center"
           justifyContent="space-between"
-          mb={5}
+          mb={2}
         >
           <Typography variant="h4" gutterBottom>
             Manager Account

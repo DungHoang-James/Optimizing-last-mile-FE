@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
+import { GoBackButton } from "@/components/go-back-button";
 import { Loading } from "@/components/loading";
 import { Status } from "@/components/status";
 import { Typography } from "@/components/typography";
@@ -49,6 +50,7 @@ export default function DriverDetailPage() {
         <title>Driver - {params.id}</title>
       </Helmet>
       <Container>
+        <GoBackButton pathname="/dashboard/drivers" />
         <Stack
           direction="row"
           alignItems="center"

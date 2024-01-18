@@ -4,7 +4,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 export const ROUTES_PATH: { [key: string]: string } = {
   "/": "root",
   "/login": "login",
-  "/dashboard": "dashboard",
+  "/dashboard/overview": "overview",
+  "/dashboard/manager-overview": "overview",
   "/dashboard/managers": "managers",
   "/dashboard/profile": "profile",
   "/dashboard/manager-profile": "manager-profile",
@@ -14,11 +15,13 @@ export const ROUTES_PATH: { [key: string]: string } = {
 };
 
 export const ADMIN_PATH = [
+  "/dashboard/overview",
   "/dashboard/profile",
   "/dashboard/managers",
-  "/dashboard/setting",
 ];
+
 export const MANAGER_PATH = [
+  "/dashboard/manager-overview",
   "/dashboard/manager-profile",
   "/dashboard/drivers",
   "/dashboard/drivers/:id",
@@ -28,6 +31,16 @@ export const MANAGER_PATH = [
 ];
 
 export const ADMIN_ROUTES: RouteObject[] = [
+  {
+    path: "/dashboard/overview",
+    index: true,
+    async lazy() {
+      const { default: AdminDashboardPage } = await import(
+        "../pages/AdminDashboardPage"
+      );
+      return { Component: AdminDashboardPage };
+    },
+  },
   {
     path: "/dashboard/managers",
     async lazy() {
@@ -42,16 +55,19 @@ export const ADMIN_ROUTES: RouteObject[] = [
       return { Component: ProfilePage };
     },
   },
-  {
-    path: "/dashboard/setting",
-    async lazy() {
-      const { default: SettingPage } = await import("../pages/SettingPage");
-      return { Component: SettingPage };
-    },
-  },
 ];
 
 export const MANAGER_ROUTES: RouteObject[] = [
+  {
+    path: "/dashboard/manager-overview",
+    index: true,
+    async lazy() {
+      const { default: ManagersPage } = await import(
+        "../pages/ManagerDashboardPage"
+      );
+      return { Component: ManagersPage };
+    },
+  },
   {
     path: "/dashboard/manager-profile",
     async lazy() {

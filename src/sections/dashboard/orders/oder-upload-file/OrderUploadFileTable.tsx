@@ -100,7 +100,11 @@ export default function OrderUploadFileTable() {
   const handleChangeRowsPerPage = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    setPagination((prev) => ({ ...prev, pageSize: +event.target.value }));
+    setPagination((prev) => ({
+      ...prev,
+      page: 0,
+      pageSize: +event.target.value,
+    }));
   };
 
   return (

@@ -79,7 +79,7 @@ const managerSchemaCreate = object({
     .required("Phone Number is required"),
 });
 
-const managerSchemaEdit = managerSchemaCreate.omit(["password"]);
+const managerSchemaEdit = managerSchemaCreate.omit(["password", "email"]);
 
 type Props = {
   id?: number;

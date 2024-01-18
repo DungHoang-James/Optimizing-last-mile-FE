@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import OrderProvider from "@/providers/Orders/OrderProvider";
 import { OrderCreate, OrdersTable } from "@/sections/dashboard/orders";
 import OrderUploadFile from "@/sections/dashboard/orders/oder-upload-file/OrderUploadFile";
+import OrderAutoAssignDriver from "@/sections/dashboard/orders/OrderAutoAssignDriver";
 
 export default function OrderPage() {
   return (
@@ -23,6 +24,7 @@ export default function OrderPage() {
           </Typography>
           <Stack direction={"row"} spacing={2}>
             <OrderUploadFile />
+            <OrderAutoAssignDriver />
             <OrderCreate />
           </Stack>
         </Stack>

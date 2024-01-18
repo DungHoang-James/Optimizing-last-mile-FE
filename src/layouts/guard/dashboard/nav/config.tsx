@@ -1,13 +1,18 @@
+import BarChartIcon from "@mui/icons-material/BarChart";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MopedIcon from "@mui/icons-material/Moped";
 import PersonIcon from "@mui/icons-material/Person";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-import SettingsIcon from "@mui/icons-material/Settings";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 
 import type { NavConfig } from "@/types/NavConfig";
 
 const navConfig: NavConfig[] = [
+  {
+    title: "Dashboard",
+    path: "/dashboard/overview",
+    icon: <BarChartIcon />,
+  },
   {
     title: "Profile",
     path: "/dashboard/profile",
@@ -18,14 +23,14 @@ const navConfig: NavConfig[] = [
     path: "/dashboard/managers",
     icon: <SupervisedUserCircleIcon />,
   },
-  {
-    title: "Setting",
-    path: "/dashboard/setting",
-    icon: <SettingsIcon />,
-  },
 ];
 
 const managerNavConfig: NavConfig[] = [
+  {
+    title: "Dashboard",
+    path: "/dashboard/manager-overview",
+    icon: <BarChartIcon />,
+  },
   {
     title: "Profile",
     path: "/dashboard/manager-profile",
@@ -48,4 +53,4 @@ const logoutNav: NavConfig = {
   icon: <LogoutIcon />,
 };
 
-export { managerNavConfig, navConfig, logoutNav };
+export { logoutNav, managerNavConfig, navConfig };

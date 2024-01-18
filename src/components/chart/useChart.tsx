@@ -1,9 +1,13 @@
-import type { Theme } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
+import type { ApexOptions } from "apexcharts";
 import merge from "lodash/merge";
 
-export default function useChart(options: Theme) {
+import useResponsive from "@/hooks/useResponsive";
+
+export default function useChart(options: ApexOptions) {
   const theme = useTheme();
+
+  const smUp = useResponsive("up", "sm");
 
   const LABEL_TOTAL = {
     show: true,
@@ -74,7 +78,9 @@ export default function useChart(options: Theme) {
     },
 
     // Datalabels
-    dataLabels: { enabled: false },
+    dataLabels: {
+      enabled: false,
+    },
 
     // Stroke
     stroke: {
@@ -108,22 +114,25 @@ export default function useChart(options: Theme) {
 
     // Tooltip
     tooltip: {
+      theme: false,
       x: {
-        show: false,
+        show: true,
       },
     },
 
     // Legend
     legend: {
       show: true,
-      fontSize: String(13),
+      fontSize: 13,
       position: "top",
       horizontalAlign: "right",
       markers: {
         radius: 12,
       },
       fontWeight: 500,
-      itemMargin: { horizontal: 12 },
+      itemMargin: {
+        horizontal: 8,
+      },
       labels: {
         colors: theme.palette.text.primary,
       },
@@ -133,7 +142,7 @@ export default function useChart(options: Theme) {
     plotOptions: {
       // Bar
       bar: {
-        borderRadius: 4,
+        borderRadius: smUp ? 3 : 1,
         columnWidth: "28%",
         borderRadiusApplication: "end",
         borderRadiusWhenStacked: "last",

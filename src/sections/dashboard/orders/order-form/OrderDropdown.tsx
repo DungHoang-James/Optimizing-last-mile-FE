@@ -5,7 +5,7 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useQuery } from "react-query";
 
@@ -30,11 +30,10 @@ export default function OrderDropdown({
   disabled,
 }: Props) {
   const {
+    watch,
     setValue,
-    getValues,
     formState: { errors },
   } = useFormContext();
-  const [valueAutoComplete, setValueAutoComplete] = useState<Min | null>(null);
   const [open, setOpen] = useState(false);
 
   const { data, isLoading, isFetching } = useQuery({
@@ -49,13 +48,6 @@ export default function OrderDropdown({
     select: (data) => data?.data.result,
     enabled: !!role && open,
   });
-
-  useEffect(() => {
-    if (!name) return;
-    const value = getValues(name) || null;
-
-    setValueAutoComplete(value);
-  }, [getValues(name)]);
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
@@ -106,8 +98,7 @@ export default function OrderDropdown({
           {option.name}
         </li>
       )}
-      defaultValue={getValues(name) || undefined}
-      value={valueAutoComplete}
+      value={watch(name)}
       onChange={(_, value) => {
         setValue(name, value);
       }}

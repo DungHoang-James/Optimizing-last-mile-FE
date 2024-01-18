@@ -12,4 +12,3 @@ export * from "./status";
 export * from "./prediction";
 export * from "./order";
 export * from "./notification";
-export * from "./geometry";

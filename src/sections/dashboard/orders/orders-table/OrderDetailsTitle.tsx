@@ -4,6 +4,7 @@ import { CircularProgress, IconButton, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { GoBackButton } from "@/components/go-back-button";
 import { useCopyToClipboard } from "@/hooks";
 
 export default function OrderDetailsTitle() {
@@ -27,6 +28,7 @@ export default function OrderDetailsTitle() {
       justifyContent="space-between"
       mb={2}
     >
+      <GoBackButton pathname="/dashboard/orders" />
       <Typography variant="h4" gutterBottom>
         Order Details
       </Typography>
