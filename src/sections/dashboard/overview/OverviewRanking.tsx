@@ -98,136 +98,142 @@ export default function OverviewRanking() {
               pb: 1,
             }}
           >
-            <Stack
-              direction={"column"}
-              spacing={2}
-              justifyContent={"center"}
-              alignItems={"center"}
-              alignSelf={"flex-end"}
-            >
-              <StyledBadge badgeContent={"#2"} color={"default"}>
-                {isLoading || isFetching ? (
-                  <Skeleton variant={"circular"} width={48} height={48} />
-                ) : (
-                  <Avatar
-                    src={data?.[1].avatarUrl}
-                    alt={data?.[1].avatarUrl}
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      backgroundColor: theme.palette.info.dark,
-                      color: "secondary.lighter",
-                      ...theme.typography.subtitle1,
-                    }}
-                  />
-                )}
-              </StyledBadge>
-              <Stack direction={"column"} spacing={0.5} alignItems={"center"}>
-                {isLoading || isFetching ? (
-                  <Skeleton variant={"text"} sx={{ fontSize: "1rem" }} />
-                ) : (
-                  <>
-                    <Typography variant={"subtitle2"}>
-                      {data?.[1].driverName}
-                    </Typography>
-                    <Typography variant={"subtitle1"} color={"info.dark"}>
-                      {data?.[1].totalOrderDeliverySuccess}
-                    </Typography>
-                  </>
-                )}
-              </Stack>
-            </Stack>
-            <Stack
-              direction={"column"}
-              spacing={2}
-              justifyContent={"center"}
-              alignItems={"center"}
-              alignSelf={"flex-start"}
-            >
-              <StyledBadgeTop
-                badgeContent={
-                  <TrophyIcon
-                    sx={{
-                      color: theme.palette.warning.dark,
-                      width: 16,
-                      height: 16,
-                    }}
-                  />
-                }
-                color={"warning"}
+            {data?.length === 2 && (
+              <Stack
+                direction={"column"}
+                spacing={2}
+                justifyContent={"center"}
+                alignItems={"center"}
+                alignSelf={"flex-end"}
               >
-                {isLoading || isFetching ? (
-                  <Skeleton variant={"circular"} width={48} height={48} />
-                ) : (
-                  <Avatar
-                    src={data?.[0].avatarUrl}
-                    alt={data?.[0].avatarUrl}
-                    sx={{
-                      width: 64,
-                      height: 64,
-                      border: "3px solid",
-                      borderColor: theme.palette.warning.main,
-                      backgroundColor: theme.palette.info.dark,
-                      color: "secondary.lighter",
-                      ...theme.typography.subtitle1,
-                    }}
-                  />
-                )}
-              </StyledBadgeTop>
-              <Stack direction={"column"} spacing={0.5} alignItems={"center"}>
-                {isLoading || isFetching ? (
-                  <Skeleton variant={"text"} sx={{ fontSize: "1rem" }} />
-                ) : (
-                  <>
-                    <Typography variant={"subtitle1"}>
-                      {data?.[0].driverName}
-                    </Typography>
-                    <Typography variant={"h6"} color={"info.dark"}>
-                      {data?.[0].totalOrderDeliverySuccess}
-                    </Typography>
-                  </>
-                )}
+                <StyledBadge badgeContent={"#2"} color={"default"}>
+                  {isLoading || isFetching ? (
+                    <Skeleton variant={"circular"} width={48} height={48} />
+                  ) : (
+                    <Avatar
+                      src={data?.[1]?.avatarUrl}
+                      alt={data?.[1]?.avatarUrl}
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        backgroundColor: theme.palette.info.dark,
+                        color: "secondary.lighter",
+                        ...theme.typography.subtitle1,
+                      }}
+                    />
+                  )}
+                </StyledBadge>
+                <Stack direction={"column"} spacing={0.5} alignItems={"center"}>
+                  {isLoading || isFetching ? (
+                    <Skeleton variant={"text"} sx={{ fontSize: "1rem" }} />
+                  ) : (
+                    <>
+                      <Typography variant={"subtitle2"}>
+                        {data?.[1]?.driverName}
+                      </Typography>
+                      <Typography variant={"subtitle1"} color={"info.dark"}>
+                        {data?.[1]?.totalOrderDeliverySuccess}
+                      </Typography>
+                    </>
+                  )}
+                </Stack>
               </Stack>
-            </Stack>
-            <Stack
-              direction={"column"}
-              spacing={2}
-              justifyContent={"center"}
-              alignItems={"center"}
-              alignSelf={"flex-end"}
-            >
-              <StyledBadge badgeContent={"#3"} color={"default"}>
-                {isLoading || isFetching ? (
-                  <Skeleton variant={"circular"} width={48} height={48} />
-                ) : (
-                  <Avatar
-                    src={data?.[2].avatarUrl}
-                    alt={data?.[2].avatarUrl}
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      backgroundColor: theme.palette.info.dark,
-                      color: "secondary.lighter",
-                      ...theme.typography.subtitle1,
-                    }}
-                  />
-                )}
-              </StyledBadge>
-              <Stack direction={"column"} spacing={0.5} alignItems={"center"}>
-                {isLoading || isFetching ? (
-                  <Skeleton variant={"text"} sx={{ fontSize: "1rem" }} />
-                ) : (
-                  <>
-                    <Typography variant={"subtitle2"}>
-                      {data?.[2].driverName}
-                    </Typography>
-                    <Typography variant={"subtitle1"} color={"info.dark"}>
-                      {data?.[2].totalOrderDeliverySuccess}
-                    </Typography>
-                  </>
-                )}
+            )}
+            {data?.length === 1 && (
+              <Stack
+                direction={"column"}
+                spacing={2}
+                justifyContent={"center"}
+                alignItems={"center"}
+                alignSelf={"flex-start"}
+              >
+                <StyledBadgeTop
+                  badgeContent={
+                    <TrophyIcon
+                      sx={{
+                        color: theme.palette.warning.dark,
+                        width: 16,
+                        height: 16,
+                      }}
+                    />
+                  }
+                  color={"warning"}
+                >
+                  {isLoading || isFetching ? (
+                    <Skeleton variant={"circular"} width={48} height={48} />
+                  ) : (
+                    <Avatar
+                      src={data?.[0]?.avatarUrl}
+                      alt={data?.[0]?.avatarUrl}
+                      sx={{
+                        width: 64,
+                        height: 64,
+                        border: "3px solid",
+                        borderColor: theme.palette.warning.main,
+                        backgroundColor: theme.palette.info.dark,
+                        color: "secondary.lighter",
+                        ...theme.typography.subtitle1,
+                      }}
+                    />
+                  )}
+                </StyledBadgeTop>
+                <Stack direction={"column"} spacing={0.5} alignItems={"center"}>
+                  {isLoading || isFetching ? (
+                    <Skeleton variant={"text"} sx={{ fontSize: "1rem" }} />
+                  ) : (
+                    <>
+                      <Typography variant={"subtitle1"}>
+                        {data?.[0]?.driverName}
+                      </Typography>
+                      <Typography variant={"h6"} color={"info.dark"}>
+                        {data?.[0]?.totalOrderDeliverySuccess}
+                      </Typography>
+                    </>
+                  )}
+                </Stack>
               </Stack>
-            </Stack>
+            )}
+            {data?.length === 3 && (
+              <Stack
+                direction={"column"}
+                spacing={2}
+                justifyContent={"center"}
+                alignItems={"center"}
+                alignSelf={"flex-end"}
+              >
+                <StyledBadge badgeContent={"#3"} color={"default"}>
+                  {isLoading || isFetching ? (
+                    <Skeleton variant={"circular"} width={48} height={48} />
+                  ) : (
+                    <Avatar
+                      src={data?.[2]?.avatarUrl}
+                      alt={data?.[2]?.avatarUrl}
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        backgroundColor: theme.palette.info.dark,
+                        color: "secondary.lighter",
+                        ...theme.typography.subtitle1,
+                      }}
+                    />
+                  )}
+                </StyledBadge>
+                <Stack direction={"column"} spacing={0.5} alignItems={"center"}>
+                  {isLoading || isFetching ? (
+                    <Skeleton variant={"text"} sx={{ fontSize: "1rem" }} />
+                  ) : (
+                    <>
+                      <Typography variant={"subtitle2"}>
+                        {data?.[2]?.driverName}
+                      </Typography>
+                      <Typography variant={"subtitle1"} color={"info.dark"}>
+                        {data?.[2]?.totalOrderDeliverySuccess}
+                      </Typography>
+                    </>
+                  )}
+                </Stack>
+              </Stack>
+            )}
           </Stack>
         </Stack>
       )}
