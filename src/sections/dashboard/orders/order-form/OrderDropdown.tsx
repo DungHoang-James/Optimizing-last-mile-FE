@@ -95,6 +95,7 @@ export default function OrderDropdown({
       )}
       renderOption={(props, option) => (
         <li {...props} key={option.id}>
+          {option.id} &#8208; {option?.phoneNumberProfile ?? "N/A"} &#8208;{" "}
           {option.name}
         </li>
       )}
